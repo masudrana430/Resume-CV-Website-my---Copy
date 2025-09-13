@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic document meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Masud Rana — CV</title>
+
+  <!-- Tailwind CSS (CDN) for utility classes.
+       We still use custom CSS variables for the theme system. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Mobile browser UI color; JS updates this on theme toggle -->
+  <meta name="theme-color" content="#0b1220" id="themeColorMeta">
+
+  <style>
+    /* =========================================================
+       THEME TOKENS (CSS variables)
+       - Dark mode defaults in :root
+       - Light mode overrides in [data-theme="light"]
+       - All components read from these tokens
+       ========================================================= */
+    :root {
+      /* Base colors (Dark) */
+      --bg: #0b1220;           /* deep navy = true dark */
+      --text: #e6eaf2;         /* soft white for body text */
+      --muted: #9aa3b2;        /* secondary text */
+
+      /* Surfaces & borders used by cards/panels */
+      --surface-0: #0b1220;               /* page backdrop */
+      --surface-1: rgba(255,255,255,0.05);/* main card/panels */
+      --surface-2: rgba(255,255,255,0.03);/* subtle inner surfaces */
+      --border: rgba(255,255,255,0.10);
+
+      /* Shadows */
+      --shadow-1: 0 16px 40px rgba(0,0,0,.45);
+      --shadow-2: 0 8px 20px rgba(0,0,0,.35);
+
+      /* Accessible accent system (default Indigo) */
+      --brand: #6366F1;     /* primary seed color */
+      --brand-2: #06B6D4;   /* secondary */
+      --brand-text: #EEF2FF;/* on-brand text */
+      --brand-ui: #818CF8;  /* UI fills, badges, etc. */
+      --ring: rgba(99,102,241,0.28); /* focus ring */
+
+      /* Status */
+      --success: #10B981;
+      --warning: #F59E0B;
+      --error:   #EF4444;
+
+      --radius: 18px;
+    }
+
+    /* Light theme overrides: toggled by [data-theme="light"] on <html> */
+    [data-theme="light"] {
+      --bg: #f7fafc;
+      --text: #0f172a;
+      --muted: #5b6473;
+
+      --surface-0: #f0f4f8;
+      --surface-1: #ffffff;
+      --surface-2: #f8fafc;
+      --border: rgba(2,6,23,0.10);
+
+      --shadow-1: 0 12px 28px rgba(2,6,23,0.08);
+      --shadow-2: 0 6px 14px rgba(2,6,23,0.06);
+
+      --brand-text: #312e81; /* darker heading color on light */
+      --brand-ui: #4f46e5;   /* slightly deeper Indigo */
+      --ring: rgba(99,102,241,0.32);
+    }
+
+    /* =========================================================
+       GLOBAL LAYOUT & BACKGROUND
+       ========================================================= */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      /* Layered background for depth */
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(255,255,255,0.05), transparent),
+        radial-gradient(900px 500px at 110% 10%, rgba(255,255,255,0.05), transparent),
+        linear-gradient(180deg, var(--surface-0), var(--bg));
+      overflow-x: hidden;
+    }
+
+    /* Slow rotating glow behind content; very low opacity */
+    .backdrop {
+      position: fixed; inset: -20vmax; z-index: -1;
+      filter: blur(60px) saturate(140%);
+      background: conic-gradient(from 180deg at 50% 50%, var(--brand), var(--brand-2), #7aa2ff, var(--brand));
+      opacity: .075; animation: spin 28s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(1turn); } }
+
+    /* Scroll progress bar (updated via JS) */
+    .progress {
+      position: fixed; inset: 0 0 auto 0; height: 3px;
+      background: linear-gradient(90deg, var(--brand-ui), #93c5fd);
+      width: 0; z-index: 999; box-shadow: 0 0 0 6px var(--ring);
+    }
+
+    /* Page container */
+    .container { max-width: 1140px; margin: 28px auto; padding: 0 16px 32px; }
+
+    /* Main card wrapper */
+    .card {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow-1);
+      overflow: clip; position: relative;
+    }
+    /* Decorative edge using brand tint */
+    .card:before {
+      content: ""; position: absolute; inset: 0; pointer-events:none; border-radius: 24px;
+      background: linear-gradient(180deg, transparent, color-mix(in oklab, var(--brand-ui) 6%, transparent));
+      opacity:.6;
+    }
+
+    /* Toolbar across the top of the card */
+    .toolbar {
+      display: flex; justify-content: space-between; gap: 8px; padding: 12px 20px;
+      background: var(--surface-2); border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    /* Buttons/chips share a base look; brand variations below */
+    .chip, .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px;
+      border-radius: 999px; border: 1px solid var(--border); color: var(--text);
+      background: var(--surface-1); text-decoration: none; cursor: pointer;
+      box-shadow: var(--shadow-2);
+      transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+      background: color-mix(in oklab, var(--surface-1) 86%, var(--brand-ui) 14%);
+      box-shadow: 0 10px 22px rgba(0,0,0,.18);
+    }
+    .btn:focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
+
+    /* Primary button (brand fill) */
+    .btn--primary {
+      background: color-mix(in oklab, var(--brand) 88%, #000 12%);
+      border-color: color-mix(in oklab, var(--brand) 65%, #000 35%);
+    }
+    .btn--primary:hover {
+      background: color-mix(in oklab, var(--brand) 92%, #000 8%);
+    }
+
+    /* Extra-subtle button */
+    .btn--ghost { background: var(--surface-2); }
+
+    /* Accent color swatches */
+    .swatch {
+      width: 22px; height: 22px; border-radius: 999px; border: 1px solid var(--border);
+      cursor: pointer; display: inline-block; box-shadow: var(--shadow-2);
+    }
+
+    /* Header (avatar + name + tagline + socials) */
+    .header { display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: center; padding: 24px; }
+    .avatar-wrap { position: relative; perspective: 1000px; }
+    .avatar-ring { position: absolute; inset: -8px; border-radius: 9999px;
+      background: conic-gradient(from 210deg, var(--brand), var(--brand-2), #7aa2ff, var(--brand));
+      filter: blur(10px); opacity: .7;
+    }
+    .avatar { width: 180px; height: 180px; border-radius: 9999px; object-fit: cover;
+      border: 4px solid var(--border); position: relative; z-index: 1; background: #0d0f14; will-change: transform; transition: transform .2s ease;
+    }
+    .title h1 { margin: 4px 0 8px; font-size: 40px; letter-spacing: .8px; }
+    .title p { margin: 0; color: var(--muted); min-height: 1.4em; }
+
+    /* Social links row */
+    .socials { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .socials a {
+      color: var(--text); opacity: .95; border: 1px solid var(--border); padding: 8px 12px; border-radius: 10px;
+      text-decoration: none; display: inline-flex; gap: 8px; align-items: center; background: var(--surface-1); box-shadow: var(--shadow-2);
+      transition: transform .15s ease, background .15s ease;
+    }
+    .socials a:hover { transform: translateY(-1px);
+      background: color-mix(in oklab, var(--surface-1) 86%, var(--brand-ui) 14%);
+    }
+
+    /* Content grid: two columns on desktop; we reorder on small screens */
+    .grid { display: grid; grid-template-columns: 330px 1fr; gap: 24px; padding: 0 24px 24px; }
+    .col-aside { order: 1; } /* left column by default */
+    .col-main  { order: 2; } /* right column by default */
+
+    /* Reusable panel component */
+    .panel {
+      background: var(--surface-1); border: 1px solid var(--border);
+      border-radius: 16px; padding: 18px; transform: translateY(12px); opacity: 0; transition: .5s ease; box-shadow: var(--shadow-2);
+    }
+    .panel h3 {
+      margin: 0 0 12px; font-size: 16px; letter-spacing: .6px; font-weight: 700;
+      text-transform: uppercase; color: var(--brand-text);
+    }
+    .panel.show { transform: none; opacity: 1; } /* set by IntersectionObserver */
+
+    /* Small helpers */
+    .stack { display: grid; gap: 14px; }
+    .item { display: grid; gap: 6px; }
+    .muted { color: var(--muted); }
+    .row { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; cursor: pointer; }
+    .row i { width: 18px; opacity: .95; color: var(--brand-ui); }
+
+    /* Skill bars (animated widths) */
+    .skill { display: grid; gap: 6px; }
+    .skill .bar { height: 9px; border-radius: 999px; background: color-mix(in oklab, var(--surface-1) 70%, #000 30%); overflow: hidden; position: relative; }
+    .skill .bar > span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--brand-ui), var(--brand)); box-shadow: 0 0 0 5px var(--ring); transition: width 1.2s cubic-bezier(.2,.6,.2,1); }
+
+    /* Generic meters (e.g., course progress) */
+    .meter { position: relative; height: 12px; border-radius: 999px; background: color-mix(in oklab, var(--surface-1) 70%, #000 30%); border: 1px solid var(--border); overflow: hidden; }
+    .meter > span { display:block; height:100%; width:0; background: linear-gradient(90deg, var(--brand-ui), var(--brand)); transition: width 1.1s cubic-bezier(.25,.7,.2,1); }
+
+    /* Education timeline */
+    .tl { display: grid; gap: 18px; }
+    .tl-item { display: grid; grid-template-columns: 16px 1fr; gap: 12px; }
+    .tl-dot { width: 16px; height: 16px; border-radius: 9999px; background: var(--brand-ui); margin-top: 6px; box-shadow: 0 0 0 6px var(--ring); }
+    .tl-body h4 { margin: 0 0 6px; font-size: 18px; }
+    .tl-body p { margin: 2px 0; }
+
+    /* Certificates container */
+    .cert-view { background: var(--surface-2); border: 1px dashed var(--border); border-radius: 12px; padding: 12px; }
+    .cert-actions { display: flex; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .cert-toggle { margin-left: auto; } /* push toggle to the end */
+    object.pdf-embed, img.cert-img { width: 100%; height: 420px; border: 0; border-radius: 10px; background: #0b0d12; cursor: zoom-in; }
+
+    /* Signature block */
+    .signature { display: grid; gap: 8px; justify-items: start; }
+    .signature img { width: 200px; border-radius: 6px; border: 1px solid var(--border); background: #0d1016; }
+    .sig-line { width: 280px; height: 1px; background: var(--border); }
+
+    /* References list & cards */
+    .ref-list { display: grid; gap: 12px; }
+    .ref-card { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 12px; }
+    .ref-card h4 { margin: 0 0 4px; font-size: 16px; }
+    .ref-meta { color: var(--muted); font-size: 13px; }
+    .ref-actions { display: flex; gap: 10px; }
+
+    /* Reusable action row with spaces */
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+    /* ===== Modals (Certificate/References) ===== */
+
+    /* Native <dialog> look; we also provide fallback if showModal() isn't available */
+    dialog[open] {
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: var(--surface-1); color: var(--text);
+      border: 1px solid var(--border) !important; border-radius: 12px; box-shadow: var(--shadow-1); z-index: 10000;
+    }
+    /* Custom backdrop for non-dialog browsers; added/removed via JS */
+    .modal-backdrop {
+      position: fixed; inset: 0;
+      background: color-mix(in oklab, black 60%, transparent 40%); /* dim page */
+      backdrop-filter: blur(2px);
+      z-index: 9999;
+    }
+
+    /* Modal headers share the same tone */
+    #refModal .modal-head, #certModal .modal-head {
+      background: color-mix(in oklab, var(--surface-2) 80%, #000000 100%);
+      color: var(--text);
+      padding: 10px 12px; display:flex; align-items:center; justify-content:space-between; gap:10px; border-bottom:1px solid var(--border)
+    }
+
+    /* References modal body: richer dark gradient with subtle blur. */
+    #refModal .modal-body{
+      --panel-top:  color-mix(in oklab, var(--surface-1) 94%, #000000 90%);
+      --panel-base: color-mix(in oklab, var(--surface-1) 88%, #000000 70%);
+      background: linear-gradient(180deg, var(--panel-top), var(--panel-base));
+      border-top: 1px solid var(--border);
+      backdrop-filter: blur(6px) saturate(115%);
+    }
+    /* Light mode modal tweaks */
+    [data-theme="light"] #refModal .modal-head {
+      background: color-mix(in oklab, var(--surface-2) 96%, #fff 4%);
+    }
+    [data-theme="light"] #refModal .modal-body{
+      --panel-top:  color-mix(in oklab, var(--surface-2) 98%, #fff 2%);
+      --panel-base: color-mix(in oklab, var(--surface-1) 98%, #fff 2%);
+      background: linear-gradient(180deg, var(--panel-top), var(--panel-base));
+      backdrop-filter: blur(4px) saturate(110%);
+    }
+    /* Fallback if color-mix not supported */
+    @supports not (background: color-mix(in oklab, black 10%, white 90%)) {
+      #refModal .modal-body{ background: rgba(13, 17, 23, 0.96); }
+      [data-theme="light"] #refModal .modal-body{ background: rgba(255, 255, 255, 0.98); }
+      #refModal .modal-head{ background: rgba(13, 17, 23, 0.92); }
+      [data-theme="light"] #refModal .modal-head{ background: rgba(255,255,255,0.96); }
+    }
+
+    /* Inputs inside References modal */
+    #refModal label { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--muted); }
+    #refModal input {
+      width: 100%; padding: 12px 12px;
+      border: 1px solid var(--border);
+      background: color-mix(in oklab, var(--surface-1) 86%, #000 14%);
+      color: var(--text); border-radius: 12px;
+      transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    #refModal input::placeholder { color: color-mix(in oklab, var(--muted) 90%, #fff 10%); }
+    #refModal input:focus { outline: none; border-color: var(--brand-ui); box-shadow: 0 0 0 4px var(--ring); }
+    [data-theme="light"] #refModal input { background: #fff; }
+
+    /* Footer: soft gradient + border; JS injects current year */
+    .foot {
+      padding: 18px 24px 24px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, color-mix(in oklab, var(--surface-2) 85%, transparent 15%), transparent);
+    }
+    .foot .inner { display: grid; gap: 8px; justify-items: center; }
+    .foot .links { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; justify-content: center; }
+    .foot a { color: var(--brand-ui); text-decoration: none; }
+    .foot a:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+    /* ===== Responsive rules ===== */
+    @media (max-width: 1024px) {
+      .grid { grid-template-columns: 1fr; } /* collapse to one column */
+      .col-main { order: 1; }  /* show MAIN first on small screens */
+      .col-aside { order: 2; } /* move ASIDE below */
+    }
+    @media (max-width: 900px) {
+      .header { grid-template-columns: 1fr; text-align: center; }
+      .avatar { margin: 0 auto; }
+      .socials { justify-content: center; }
+    }
+
+    /* Print: minimal mode for a clean PDF */
+    @media print {
+      body { background: #fff; color: #000; }
+      .progress, .toolbar, .to-top, .backdrop { display: none !important; }
+      .card, .panel, .cert-view { box-shadow: none; border-color: #ccc; }
+      .avatar-ring { display: none; }
+      .socials a { border-color: #ccc; }
+      object.pdf-embed, img.cert-img { height: 260px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Skip link for keyboard users -->
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-indigo-600 focus:text-white focus:px-3 focus:py-2 focus:rounded">Skip to content</a>
+
+  <!-- Subtle animated glow -->
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <!-- Scroll progress bar -->
+  <div class="progress" id="progress"></div>
+
+  <main id="main" class="container">
+    <div class="card">
+      <!-- ================= Toolbar ================= -->
+      <div class="toolbar">
+        <div class="flex items-center gap-2">
+          <!-- Theme toggle (persists to localStorage) -->
+          <button class="btn" id="themeToggle" aria-label="Toggle light/dark">
+            <i class="fa-regular fa-sun"></i><span>Theme</span>
+          </button>
+        </div>
+        <div class="flex items-center gap-3 flex-wrap">
+          <!-- Print uses @media print rules for a nice PDF -->
+          <button class="btn" id="printBtn"><i class="fa-solid fa-print"></i><span>Print</span></button>
+
+          <!-- Accent color swatches -->
+          <div class="actions" aria-label="Accent color picker">
+            <span class="chip"><i class="fa-solid fa-palette"></i> Accent</span>
+            <span class="swatch" data-color="#6366F1" title="Indigo" style="background:#6366F1"></span>
+            <span class="swatch" data-color="#06B6D4" title="Cyan"   style="background:#06B6D4"></span>
+            <span class="swatch" data-color="#F59E0B" title="Amber"  style="background:#F59E0B"></span>
+            <span class="swatch" data-color="#10B981" title="Emerald"style="background:#10B981"></span>
+            <span class="swatch" data-color="#F43F5E" title="Rose"   style="background:#F43F5E"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= Header ================= -->
+      <section class="header" aria-label="Header">
+        <!-- Avatar with tilt effect -->
+        <div class="avatar-wrap" id="tilt">
+          <div class="avatar-ring" aria-hidden="true"></div>
+          <img class="avatar" src="images/photo_6262631521450050816_y.jpg" alt="Portrait of Masud Rana" loading="eager" />
+        </div>
+
+        <!-- Name + animated tagline + socials -->
+        <div class="title">
+          <h1>MASUD RANA</h1>
+          <p id="tagline" class="muted" aria-live="polite"></p>
+          <nav class="socials" aria-label="Social links">
+            <a href="http://www.youtube.com/@sukoonalqalb-c9v" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> YouTube</a>
+            <a href="https://www.facebook.com/profile.php?id=100069416914519" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i> Facebook</a>
+            <a href="https://github.com/masudrana430" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+          </nav>
+        </div>
+      </section>
+
+      <!-- ================= Content Grid ================= -->
+      <section class="grid">
+        <!-- ===== Left column (ASIDE) ===== -->
+        <aside class="stack col-aside" aria-label="Sidebar">
+          <!-- Contact panel (click rows to copy) -->
+          <div class="panel reveal">
+            <h3>Contact</h3>
+            <div class="stack">
+              <a class="row" data-copy="West Beparipara, Agrabad, Chattogram"><i class="fa-solid fa-location-dot"></i><span>West Beparipara, Agrabad, Chattogram</span></a>
+              <a class="row" href="tel:+8801878155256" data-copy="+880 1878-155256"><i class="fa-solid fa-phone"></i><span>+880 1878-155256</span></a>
+              <a class="row" href="mailto:masud040502@gmail.com" data-copy="masud040502@gmail.com"><i class="fa-solid fa-envelope"></i><span>masud040502@gmail.com</span></a>
+              <a class="row" href="https://github.com/masudrana430" target="_blank" rel="noopener" data-copy="github.com/masudrana430"><i class="fa-brands fa-github"></i><span>github.com/masudrana430</span></a>
+            </div>
+          </div>
+
+          <!-- Skills (animated bars) -->
+          <div class="panel reveal">
+            <h3>Skills</h3>
+            <div class="stack">
+              <div class="skill" data-level="92"><strong>HTML</strong><div class="bar"><span></span></div></div>
+              <div class="skill" data-level="88"><strong>CSS</strong><div class="bar"><span></span></div></div>
+              <div class="skill" data-level="70"><strong>JavaScript</strong><div class="bar"><span></span></div></div>
+              <div class="skill" data-level="90"><strong>Microsoft Word</strong><div class="bar"><span></span></div></div>
+              <div class="skill" data-level="80"><strong>Microsoft Excel</strong><div class="bar"><span></span></div></div>
+              <div class="skill" data-level="85"><strong>PowerPoint</strong><div class="bar"><span></span></div></div>
+              <div class="skill" data-level="70"><strong>Video Editing</strong><div class="bar"><span></span></div></div>
+              <div class="item"><strong>Typing</strong><span class="muted">Accuracy: High • Speed: 25–30 WPM</span></div>
+            </div>
+          </div>
+
+          <!-- Languages -->
+          <div class="panel reveal">
+            <h3>Languages</h3>
+            <div class="stack">
+              <div class="skill" data-level="95"><strong>Bangla (Bengali)</strong><div class="bar"><span></span></div></div>
+              <div class="skill" data-level="75"><strong>English</strong><div class="bar"><span></span></div></div>
+              <div class="skill" data-level="65"><strong>Hindi</strong><div class="bar"><span></span></div></div>
+              <div class="skill" data-level="60"><strong>Urdu</strong><div class="bar"><span></span></div></div>
+            </div>
+          </div>
+
+          <!-- Hobbies -->
+          <div class="panel reveal">
+            <h3>Hobbies</h3>
+            <div class="stack">
+              <div class="row"><i class="fa-solid fa-book"></i><span>Reading books</span></div>
+              <div class="row"><i class="fa-solid fa-plane"></i><span>Travelling</span></div>
+              <div class="row"><i class="fa-solid fa-life-ring"></i><span>Swimming</span></div>
+              <div class="row"><i class="fa-brands fa-apple"></i><span>Apple devices</span></div>
+            </div>
+          </div>
+
+          <!-- Personal Strength -->
+          <div class="panel reveal">
+            <h3>Personal Strength</h3>
+            <div class="stack">
+              <div class="row"><i class="fa-solid fa-list-check"></i><span>Management skills</span></div>
+              <div class="row"><i class="fa-solid fa-people-group"></i><span>Leadership</span></div>
+              <div class="row"><i class="fa-solid fa-handshake"></i><span>Negotiation</span></div>
+              <div class="row"><i class="fa-regular fa-lightbulb"></i><span>Quick learning</span></div>
+              <div class="row"><i class="fa-solid fa-bullhorn"></i><span>Public relations</span></div>
+              <div class="row"><i class="fa-regular fa-comments"></i><span>Effective communication</span></div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- ===== Right column (MAIN) ===== -->
+        <section class="stack col-main" aria-label="Main content">
+          <!-- Profile -->
+          <div class="panel reveal">
+            <h3><i class="fa-solid fa-user" aria-hidden="true"></i> Profile</h3>
+            <p>
+              Detail-oriented data operations professional with a proven record of entering, verifying, and managing large datasets accurately and on time. Proficient in Microsoft Office (Word, Excel, PowerPoint); comfortable with basic HTML/CSS/JS. Self-motivated, accountable, and an effective communicator who works well independently or in a team.
+            </p>
+          </div>
+
+          <!-- Education timeline -->
+          <div class="panel reveal">
+            <h3><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Education</h3>
+            <div class="tl">
+              <div class="tl-item">
+                <div class="tl-dot" aria-hidden="true"></div>
+                <div class="tl-body">
+                  <h4>Bachelor of Science (Honours) — Physics</h4>
+                  <p><strong>Institute:</strong> Govt. City College, Chattogram</p>
+                  <p><strong>GPA (1st Year):</strong> 2.72/4.00</p>
+                  <p><strong>GPA (2nd Year):</strong> 2.66/4.00</p>
+                  <p><strong>Academic Session:</strong> 2021–2022</p>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot" aria-hidden="true"></div>
+                <div class="tl-body">
+                  <h4>Higher Secondary Certificate (H.S.C) — Science</h4>
+                  <p><strong>Institute:</strong> Chattogram Bandar College</p>
+                  <p><strong>GPA:</strong> 5.00/5.00</p>
+                  <p><strong>Passing Year:</strong> 2021</p>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot" aria-hidden="true"></div>
+                <div class="tl-body">
+                  <h4>Secondary School Certificate (S.S.C) — Science</h4>
+                  <p><strong>Institute:</strong> Chattogram City Corporation Hatey Khari School &amp; College</p>
+                  <p><strong>GPA:</strong> 4.94/5.00</p>
+                  <p><strong>Passing Year:</strong> 2019</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Continuing Course -->
+          <div class="panel reveal">
+            <h3><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i> Continuing Course</h3>
+            <div class="tl">
+              <div class="tl-item">
+                <div class="tl-dot" aria-hidden="true"></div>
+                <div class="tl-body">
+                  <h4>Complete Web Development Course (Batch 12)</h4>
+                  <p><strong>Platform:</strong> Programming Hero</p>
+                  <p><strong>Status:</strong> Ongoing</p>
+                  <p><strong>Focus:</strong> HTML, CSS, JavaScript, React, Node.js, Express, MongoDB</p>
+                  <div class="item">
+                    <strong>Overall Progress <span class="muted" style="font-weight:600">• <span class="val">60%</span></span></strong>
+                    <div class="meter" data-level="60" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60"><span></span></div>
+                  </div>
+                  <div class="item">
+                    <strong>Assignment Average <span class="muted" style="font-weight:600">• <span class="val">97.67%</span></span></strong>
+                    <div class="meter" data-level="97.67" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="97.67"><span></span></div>
+                    <small class="muted">58.60 / 60 (97.67%)</small>
+                  </div>
+                  <p><strong>Link:</strong> <a href="https://www.programming-hero.com" target="_blank" rel="noopener" style="color: var(--brand-text); text-decoration: underline; text-underline-offset: 2px;">programming-hero.com</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Certificates -->
+          <div class="panel reveal">
+            <h3><i class="fa-solid fa-certificate" aria-hidden="true"></i> Certificates</h3>
+            <div class="cert-view">
+              <div class="cert-actions">
+                <!-- Opens modal or new tab if no dialog support -->
+                <button class="btn btn--primary" id="openCert"><i class="fa-solid fa-up-right-from-square"></i><span>Open PDF</span></button>
+                <!-- Downloads static PNG -->
+                <a class="btn" id="downloadCert" href="images/5bedfd90-7fa8-47c9-945d-9d93d50dc8c7.png" download><i class="fa-solid fa-download"></i><span>Download PNG</span></a>
+                <!-- Toggle between embedded PDF and image preview -->
+                <div class="cert-toggle actions">
+                  <button class="btn" id="toggleView"><i class="fa-regular fa-file"></i> Toggle PDF/Image</button>
+                </div>
+              </div>
+              <object id="certObj" class="pdf-embed" data="https://lms10.s3.ap-southeast-1.amazonaws.com/skillup/certificates/68bb1a268250b.pdf" type="application/pdf" aria-label="Embedded certificate PDF"></object>
+              <img id="certImg" class="cert-img" src="images/5bedfd90-7fa8-47c9-945d-9d93d50dc8c7.png" alt="Certificate image" loading="lazy" style="display:none" />
+            </div>
+          </div>
+
+          <!-- Signature -->
+          <div class="panel reveal">
+            <h3><i class="fa-solid fa-pen-nib" aria-hidden="true"></i> Signature</h3>
+            <div class="signature">
+              <img src="images/photo_6064369573299344706_m.jpg" alt="Signature of Masud Rana" loading="lazy" />
+              <div class="sig-line" aria-hidden="true"></div>
+              <div><strong>Masud Rana</strong><br><small class="muted">Signature</small></div>
+            </div>
+          </div>
+
+          <!-- Hire Me -->
+          <div class="panel reveal">
+            <h3><i class="fa-solid fa-handshake-angle"></i> Hire Me</h3>
+            <p class="muted">I’m open to data operations, admin, and junior web roles. Let’s talk!</p>
+            <div class="actions mt-2">
+              <a class="btn btn--primary" href="mailto:masud040502@gmail.com?subject=Interview%20with%20Masud%20Rana"><i class="fa-regular fa-paper-plane"></i> Email</a>
+              <a class="btn" href="tel:+8801878155256"><i class="fa-solid fa-phone"></i> Call</a>
+              <button class="btn btn--ghost" id="copyProfile"><i class="fa-regular fa-copy"></i> Copy profile link</button>
+            </div>
+          </div>
+
+          <!-- References (persisted in localStorage) -->
+          <div class="panel reveal" id="references">
+            <h3><i class="fa-solid fa-address-book"></i> References</h3>
+            <!-- Live list injected from JS -->
+            <div class="stack ref-list" id="refList" aria-live="polite">
+              <div class="muted">No references yet. Click “Add reference”.</div>
+            </div>
+            <!-- Actions -->
+            <div class="actions mt-2">
+              <button class="btn btn--primary" id="addRef"><i class="fa-solid fa-plus"></i> Add reference</button>
+              <button class="btn" id="exportRefs"><i class="fa-regular fa-copy"></i> Copy as text</button>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- ================= Footer ================= -->
+      <footer class="foot">
+        <div class="inner">
+          <div>© <span id="year"></span> Masud Rana. Single-file, responsive, animated, and print-ready.</div>
+          <div class="links">
+            <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-arrow-up"></i> Back to top</a>
+            <a href="mailto:masud040502@gmail.com?subject=Hello%20Masud"><i class="fa-regular fa-envelope"></i> Contact</a>
+            <a href="https://github.com/masudrana430" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <!-- Floating Back-to-top button (appears after scrolling) -->
+  <button class="btn to-top" id="toTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <!-- Toast for small notifications (copy, save, etc.) -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- ===== Certificate modal ===== -->
+  <dialog id="certModal" style="border:none; border-radius: 12px; padding: 0; max-width: 90vw;">
+    <div class="modal-head">
+      <strong><i class="fa-solid fa-certificate"></i> Certificate</strong>
+      <button class="btn" id="closeCert"><i class="fa-solid fa-xmark"></i> Close</button>
+    </div>
+    <!-- Big embedded PDF inside modal -->
+    <object style="width: min(86vw, 980px); height: 80vh; display:block; background:#0b0d12"
+      data="https://lms10.s3.ap-southeast-1.amazonaws.com/skillup/certificates/68bb1a268250b.pdf"
+      type="application/pdf"></object>
+  </dialog>
+
+  <!-- ===== References modal ===== -->
+  <dialog id="refModal" style="border:none; border-radius: 12px; padding: 0; max-width: 640px;">
+    <div class="modal-head">
+      <strong><i class="fa-solid fa-address-book"></i> Add / Edit Reference</strong>
+      <button class="btn" id="refCancel"><i class="fa-solid fa-xmark"></i> Close</button>
+    </div>
+    <div class="modal-body">
+      <!-- Form content (grid layout) -->
+      <form id="refForm" style="padding: 16px;">
+        <div class="form-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <label> Name<input id="refName" type="text" required placeholder="Full name" /></label>
+          <label> Role / Title<input id="refRole" type="text" placeholder="Role or Title" /></label>
+          <label> Company / Organization<input id="refCompany" type="text" placeholder="Company or Organization" /></label>
+          <label> Phone<input id="refPhone" type="text" placeholder="Phone" /></label>
+          <label> Email<input id="refEmail" type="email" placeholder="Email" /></label>
+        </div>
+        <div class="actions" style="justify-content:flex-end; margin-top: 14px;">
+          <!-- Shown only when editing an existing item -->
+          <button type="button" class="btn" id="refDelete" style="display:none"><i class="fa-regular fa-trash-can"></i> Delete</button>
+          <button type="submit" class="btn btn--primary" id="refSave"><i class="fa-regular fa-floppy-disk"></i> Save</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <script>
+    (function() {
+      /* =========================
+         Shortcuts & DOM handles
+         ========================= */
+      const root = document.documentElement;
+      const themeMeta = document.getElementById('themeColorMeta');
+      const progress = document.getElementById('progress');
+
+      /* Tiny toast helper for UX feedback */
+      const toast = (msg) => {
+        const el = document.getElementById('toast');
+        el.textContent = msg;
+        el.classList.add('show');
+        setTimeout(() => el.classList.remove('show'), 1700);
+      };
+
+      /* =========================
+         Accent helpers
+         - Convert HEX ⇄ HSL
+         - Auto-derive --brand-text & --brand-ui from seed
+         ========================= */
+      const clamp = (n,min,max) => Math.min(max, Math.max(min, n));
+      const hexToRgb = (hex)=>{
+        hex = hex.replace('#','');
+        if(hex.length===3){hex=[hex[0],hex[0],hex[1],hex[1],hex[2],hex[2]].join('');}
+        const num = parseInt(hex,16);
+        return {r:(num>>16)&255,g:(num>>8)&255,b:num&255};
+      };
+      const rgbToHex = (r,g,b)=> '#' + [r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('');
+      function rgbToHsl(r,g,b){
+        r/=255; g/=255; b/=255;
+        const max=Math.max(r,g,b), min=Math.min(r,g,b);
+        let h,s,l=(max+min)/2;
+        if(max===min){h=s=0;}
+        else {
+          const d=max-min;
+          s = l>0.5 ? d/(2-max-min) : d/(max+min);
+          switch(max){
+            case r:h=(g-b)/d+(g<b?6:0);break;
+            case g:h=(b-r)/d+2;break;
+            case b:h=(r-g)/d+4;break;
+          }
+          h/=6;
+        }
+        return {h: h*360, s: s, l: l};
+      }
+      function hslToRgb(h,s,l){
+        h/=360; let r,g,b;
+        if(s===0){ r=g=b=l; }
+        else {
+          const hue2rgb=(p,q,t)=>{
+            if(t<0) t+=1; if(t>1) t-=1;
+            if(t<1/6) return p+(q-p)*6*t;
+            if(t<1/2) return q;
+            if(t<2/3) return p+(q-p)*(2/3 - t)*6;
+            return p;
+          };
+          const q = l < .5 ? l*(1+s) : l + s - l*s;
+          const p = 2*l - q;
+          r=hue2rgb(p,q,h+1/3); g=hue2rgb(p,q,h); b=hue2rgb(p,q,h-1/3);
+        }
+        return {r: Math.round(r*255), g: Math.round(g*255), b: Math.round(b*255)};
+      }
+      const hslToHex = (h,s,l)=>{ const {r,g,b}=hslToRgb(h,s,l); return rgbToHex(r,g,b); };
+
+      /* Set accent + compute UI/text variants for contrast */
+      function setAccent(hex){
+        root.style.setProperty('--brand', hex);
+        const {r,g,b}=hexToRgb(hex);
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        const {h,s,l}=rgbToHsl(r,g,b);
+        /* Tuned lightness for good contrast on both themes */
+        const textL = isLight ? clamp(l*0.40, 0.24, 0.40) : clamp(Math.max(l, 0.72), 0.72, 0.86);
+        const uiL   = isLight ? clamp(l*0.55, 0.38, 0.58) : clamp(Math.max(l, 0.62), 0.62, 0.78);
+        const brandText = hslToHex(h, s, textL);
+        const brandUI   = hslToHex(h, s, uiL);
+        root.style.setProperty('--brand-text', brandText);
+        root.style.setProperty('--brand-ui', brandUI);
+        root.style.setProperty('--ring', `rgba(${r}, ${g}, ${b}, ${isLight?0.32:0.28})`);
+      }
+
+      /* =========================
+         Theme toggle + persistence
+         ========================= */
+      const themeToggle = document.getElementById('themeToggle');
+      const savedTheme = localStorage.getItem('mr-theme');
+      if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+      /* set mobile browser UI color on load */
+      themeMeta.content = savedTheme === 'light' ? '#f7fafc' : '#0b1220';
+
+      /* Initialize accent from saved or default */
+      function loadAccent(){
+        const saved = localStorage.getItem('mr-accent')
+          || getComputedStyle(root).getPropertyValue('--brand').trim()
+          || '#6366F1';
+        setAccent(saved);
+      }
+      /* Swatches write new accent to localStorage */
+      document.querySelectorAll('.swatch').forEach(s => s.addEventListener('click', () => {
+        const hex = s.dataset.color;
+        localStorage.setItem('mr-accent', hex);
+        setAccent(hex);
+      }));
+      loadAccent();
+
+      /* Theme toggle click handler */
+      themeToggle.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme');
+        const next = cur === 'light' ? '' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        if (!next) document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('mr-theme', next);
+        themeMeta.content = next === 'light' ? '#f7fafc' : '#0b1220';
+        /* Recalculate accent variants for the new theme */
+        setAccent(localStorage.getItem('mr-accent') || '#6366F1');
+      });
+
+      /* =========================
+         Print handler (uses CSS @media print)
+         ========================= */
+      document.getElementById('printBtn').addEventListener('click', () => window.print());
+
+      /* =========================
+         Animated tagline (typewriter loop)
+         ========================= */
+      const tagline = document.getElementById('tagline');
+      const phrases = ['Detail-oriented data ops professional','HTML/CSS/JS enthusiast','Reliable, fast learner, team player'];
+      let pi = 0, ci = 0, typing = true;
+      (function typeLoop(){
+        const p = phrases[pi];
+        tagline.textContent = typing ? p.slice(0, ++ci) : p.slice(0, --ci);
+        if (typing && ci === p.length) { typing = false; setTimeout(typeLoop, 1100); return; }
+        if (!typing && ci === 0) { typing = true; pi = (pi + 1) % phrases.length; }
+        setTimeout(typeLoop, typing ? 38 : 22);
+      })();
+
+      /* =========================
+         Scroll progress + Back-to-top
+         ========================= */
+      const toTop = document.getElementById('toTop');
+      window.addEventListener('scroll', () => {
+        const h = document.documentElement;
+        const sc = h.scrollTop;
+        const dh = h.scrollHeight - h.clientHeight;
+        progress.style.width = (sc / dh) * 100 + '%';
+        if (sc > 260) toTop.classList.add('show'); else toTop.classList.remove('show');
+      }, { passive: true });
+      toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+      /* =========================
+         Reveal panels on scroll
+         ========================= */
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) if (e.isIntersecting) e.target.classList.add('show');
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.panel.reveal').forEach(el => io.observe(el));
+
+      /* =========================
+         Animate skill bars when visible
+         ========================= */
+      const skillIO = new IntersectionObserver((entries) => {
+        for (const e of entries) if (e.isIntersecting) {
+          e.target.querySelectorAll('.skill').forEach(s => {
+            const lvl = Math.min(100, parseFloat(s.dataset.level || '0'));
+            const bar = s.querySelector('.bar > span'); bar.style.width = lvl + '%';
+          });
+          skillIO.unobserve(e.target);
+        }
+      }, { threshold: 0.3 });
+      document.querySelectorAll('.panel').forEach(p => skillIO.observe(p));
+
+      /* =========================
+         Click-to-copy helpers
+         ========================= */
+      document.querySelectorAll('.row[data-copy]').forEach(r => r.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(r.dataset.copy); toast('Copied: ' + r.dataset.copy); } catch { toast('Copy failed'); }
+      }));
+
+      /* =========================
+         Avatar 3D tilt
+         ========================= */
+      const tilt = document.getElementById('tilt'); const img = tilt.querySelector('.avatar');
+      tilt.addEventListener('mousemove', (e) => {
+        const r = tilt.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        img.style.transform = `rotateX(${(-y*6).toFixed(2)}deg) rotateY(${(x*8).toFixed(2)}deg)`;
+      });
+      tilt.addEventListener('mouseleave', () => img.style.transform = '');
+
+      /* =========================
+         Certificates: modal + toggle PDF/Image
+         ========================= */
+      const certModal = document.getElementById('certModal');
+      const openCert = document.getElementById('openCert');
+      const closeCert = document.getElementById('closeCert');
+      const certObj = document.getElementById('certObj');
+      const certImg = document.getElementById('certImg');
+      const toggleView = document.getElementById('toggleView');
+
+      /* Open as modal if supported, else new tab */
+      function openModal() {
+        if (certModal.showModal) certModal.showModal();
+        else window.open(certObj.data, '_blank');
+      }
+      openCert.addEventListener('click', openModal);
+      certObj.addEventListener('click', openModal);
+      closeCert?.addEventListener('click', () => certModal.close());
+
+      /* Swap between embedded PDF and image */
+      toggleView.addEventListener('click', () => {
+        const showImage = certObj.style.display !== 'none';
+        certObj.style.display = showImage ? 'none' : '';
+        certImg.style.display = showImage ? '' : 'none';
+      });
+
+      /* =========================
+         Copy profile link
+         ========================= */
+      document.getElementById('copyProfile').addEventListener('click', async () => {
+        const url = location.href;
+        try { await navigator.clipboard.writeText(url); toast('Profile link copied'); } catch { toast('Copy failed'); }
+      });
+
+      /* =========================
+         REFERENCES (CRUD with localStorage)
+         ========================= */
+      const refKey = 'mr-refs';
+      const refList = document.getElementById('refList');
+      const addRefBtn = document.getElementById('addRef');
+      const exportRefsBtn = document.getElementById('exportRefs');
+      const refModal = document.getElementById('refModal');
+      const refForm = document.getElementById('refForm');
+      const refCancel = document.getElementById('refCancel');
+      const refDelete = document.getElementById('refDelete');
+      const $ = (id)=>document.getElementById(id);
+      let refs = []; let editIndex = -1;
+
+      /* Modal helpers with fallback for browsers without <dialog>.showModal */
+      let _refBackdrop;
+      const openRefModal = ()=>{
+        if (refModal.showModal) refModal.showModal();
+        else {
+          refModal.setAttribute('open','');
+          _refBackdrop = document.createElement('div');
+          _refBackdrop.className = 'modal-backdrop';
+          document.body.appendChild(_refBackdrop);
+        }
+      };
+      const closeRefModal = ()=>{
+        if (typeof refModal.close === 'function') refModal.close();
+        else {
+          refModal.removeAttribute('open');
+          _refBackdrop && _refBackdrop.remove();
+          _refBackdrop = null;
+        }
+      };
+
+      /* Safe text escape before injecting into HTML */
+      const esc = s => String(s||'').replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;' }[m]));
+
+      function loadRefs(){ try { refs = JSON.parse(localStorage.getItem(refKey)) || []; } catch { refs = []; } }
+      function saveRefs(){ localStorage.setItem(refKey, JSON.stringify(refs)); }
+
+      /* Render the list; if empty, show placeholder text */
+      function renderRefs(){
+        if(!refList) return;
+        if(!refs.length){
+          refList.innerHTML = '<div class="muted">No references yet. Click “Add reference”.</div>';
+          return;
+        }
+        refList.innerHTML = refs.map((r,i)=>`
+          <div class="ref-card" data-idx="${i}">
+            <div>
+              <h4>${esc(r.name)}</h4>
+              <div class="ref-meta">${esc([r.role, r.company].filter(Boolean).join(' — '))}</div>
+              ${r.phone?`<div class="ref-meta">${esc(r.phone)}</div>`:''}
+              ${r.email?`<div class="ref-meta">${esc(r.email)}</div>`:''}
+            </div>
+            <div class="ref-actions">
+              <button class="btn ref-edit" title="Edit"><i class="fa-regular fa-pen-to-square"></i></button>
+              <button class="btn ref-del" title="Delete"><i class="fa-regular fa-trash-can"></i></button>
+            </div>
+          </div>`).join('');
+      }
+
+      /* Init state */
+      loadRefs(); renderRefs();
+
+      /* Add new reference flow */
+      addRefBtn?.addEventListener('click', ()=>{
+        editIndex = -1;         // create mode
+        refForm.reset();        // clear old values
+        refDelete.style.display='none';
+        openRefModal();
+      });
+
+      /* Cancel/close modal */
+      refDelete.style.display='none';
+      refCancel?.addEventListener('click', ()=> closeRefModal());
+
+      /* Edit / Delete buttons within list */
+      refList?.addEventListener('click', (e)=>{
+        const card = e.target.closest('.ref-card'); if(!card) return;
+        const idx = Number(card.dataset.idx);
+
+        if(e.target.closest('.ref-edit')){
+          // Load item into form and open modal
+          editIndex = idx;
+          const r = refs[idx] || {};
+          $('refName').value=r.name||'';
+          $('refRole').value=r.role||'';
+          $('refCompany').value=r.company||'';
+          $('refPhone').value=r.phone||'';
+          $('refEmail').value=r.email||'';
+          refDelete.style.display='';
+          openRefModal();
+        } else if(e.target.closest('.ref-del')){
+          if(confirm('Delete this reference?')){
+            refs.splice(idx,1);
+            saveRefs(); renderRefs(); toast('Reference removed');
+          }
+        }
+      });
+
+      /* Delete inside modal (visible only in edit mode) */
+      refDelete?.addEventListener('click', ()=>{
+        if(editIndex>=0 && confirm('Delete this reference?')){
+          refs.splice(editIndex,1);
+          saveRefs(); renderRefs(); closeRefModal();
+          toast('Reference removed');
+        }
+      });
+
+      /* Save (create or update) */
+      refForm?.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const data = {
+          name: $('refName').value.trim(),
+          role: $('refRole').value.trim(),
+          company: $('refCompany').value.trim(),
+          phone: $('refPhone').value.trim(),
+          email: $('refEmail').value.trim()
+        };
+        if(!data.name){ toast('Name is required'); return; }
+        if(editIndex>=0) refs[editIndex]=data; else refs.push(data);
+        saveRefs(); renderRefs(); closeRefModal(); toast('Reference saved');
+      });
+
+      /* Export all references as text to clipboard */
+      exportRefsBtn?.addEventListener('click', async ()=>{
+        const text = refs.map(r=>`${r.name}
+${[r.role,r.company].filter(Boolean).join(' — ')}
+${[r.phone,r.email].filter(Boolean).join(' • ')}`).join('\n\n');
+        try { await navigator.clipboard.writeText(text); toast('References copied'); } catch { toast('Copy failed'); }
+      });
+
+      /* Footer year */
+      const y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+    })();
+
+    /* =========================
+       Initialize meters after DOM ready
+       (sets widths and aria-valuenow)
+       ========================= */
+    document.addEventListener('DOMContentLoaded', function(){
+      document.querySelectorAll('.meter').forEach(function(m){
+        var lvl = Math.min(100, parseFloat(m.getAttribute('data-level') || '0'));
+        var span = m.querySelector('span');
+        if (span) span.style.width = lvl + '%';
+        m.setAttribute('aria-valuenow', String(lvl));
+        var title = m.previousElementSibling;
+        if (title) {
+          var v = title.querySelector('.val');
+          if (v) v.textContent = (Math.round(lvl*100)/100) + '%';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
