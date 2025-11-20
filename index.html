@@ -18,6 +18,15 @@
       referrerpolicy="no-referrer"
     />
 
+    <!-- Font Awesome (icons) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
     <!-- Inter font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -562,6 +571,234 @@
         z-index: 9999;
       }
 
+      /* skill */
+      .panel.reveal {
+        /* background: #0f172a; */
+        /* dark slate */
+        border-radius: 1rem;
+        padding: 1.75rem 1.5rem;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.45);
+      }
+
+      .skills-heading {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .skills-groups {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .skills-group {
+        border-top: 1px solid rgba(148, 163, 184, 0.25);
+        padding-top: 1rem;
+      }
+
+      .skills-group:first-of-type {
+        border-top: none;
+        padding-top: 0.25rem;
+      }
+
+      .stack-title {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #94a3b8;
+        margin-bottom: 0.75rem;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0.75rem;
+      }
+
+      .skill-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+        padding: 0.75rem 0.9rem;
+        border-radius: 0.75rem;
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        transition: transform 0.18s ease, box-shadow 0.18s ease,
+          border-color 0.18s ease, background 0.18s ease;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-2px);
+        background: rgba(30, 64, 175, 0.28);
+        border-color: rgba(129, 140, 248, 0.9);
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.65);
+      }
+
+      .skill-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.3rem;
+        height: 2.3rem;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.9);
+        color: #e5e7eb;
+        flex-shrink: 0;
+        font-size: 1.1rem;
+      }
+
+      /* Optional color accents per tech */
+      .skill-icon.html {
+        color: #f97316;
+      }
+      .skill-icon.css {
+        color: #0ea5e9;
+      }
+      .skill-icon.js {
+        color: #facc15;
+      }
+      .skill-icon.react {
+        color: #38bdf8;
+      }
+      .skill-icon.tailwind {
+        color: #22c55e;
+      }
+      .skill-icon.router {
+        color: #fb7185;
+      }
+      .skill-icon.node {
+        color: #22c55e;
+      }
+      .skill-icon.express {
+        color: #e5e7eb;
+      }
+      .skill-icon.mongo {
+        color: #22c55e;
+      }
+      .skill-icon.office {
+        color: #f97316;
+      }
+      .skill-icon.video {
+        color: #e11d48;
+      }
+      .skill-icon.typing {
+        color: #a855f7;
+      }
+      .skill-icon.data {
+        color: #10b981;
+      }
+
+      .skill-text strong {
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+
+      .skill-text span {
+        display: block;
+        font-size: 0.8rem;
+        color: #9ca3af;
+        margin-top: 0.1rem;
+      }
+
+      /* language skills */
+      .languages-heading {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .languages-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 0.9rem;
+      }
+
+      .lang-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.7rem;
+        padding: 0.85rem 1rem;
+        border-radius: 0.9rem;
+        background: rgba(15, 23, 42, 0.75); /* dark slate */
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        transition: transform 0.18s ease, background 0.18s ease,
+          border-color 0.18s ease, box-shadow 0.18s ease;
+      }
+
+      .lang-card:hover {
+        transform: translateY(-2px);
+        background: rgba(30, 64, 175, 0.25);
+        border-color: rgba(129, 140, 248, 0.9);
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.7);
+      }
+
+      .lang-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.95);
+        color: #e5e7eb;
+        flex-shrink: 0;
+        font-size: 1.2rem;
+      }
+
+      /* Optional accent colors per language */
+      .lang-icon.lang-bn {
+        color: #22c55e; /* green */
+      }
+      .lang-icon.lang-en {
+        color: #38bdf8; /* blue */
+      }
+      .lang-icon.lang-hi {
+        color: #facc15; /* yellow */
+      }
+      .lang-icon.lang-ur {
+        color: #f97316; /* orange */
+      }
+
+      .lang-text strong {
+        display: block;
+        font-size: 0.98rem;
+        font-weight: 600;
+      }
+
+      .lang-level {
+        display: inline-block;
+        margin-top: 0.15rem;
+        padding: 0.1rem 0.55rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        background: rgba(129, 140, 248, 0.14);
+        color: #c7d2fe;
+      }
+
+      .lang-note {
+        display: block;
+        margin-top: 0.25rem;
+        font-size: 0.78rem;
+        color: #9ca3af;
+      }
+
+      /* Responsive */
+      @media (max-width: 640px) {
+        .lang-card {
+          padding: 0.75rem 0.85rem;
+        }
+      }
+
+      /* Responsive tweak */
+      @media (max-width: 640px) {
+        .panel.reveal {
+          padding: 1.25rem 1rem;
+        }
+      }
+
       /* Modal headers share the same tone */
       #refModal .modal-head,
       #certModal .modal-head {
@@ -848,7 +1085,6 @@
                 rel="noopener"
                 ><i class="fa-brands fa-facebook"></i> Facebook</a
               >
-              
             </nav>
           </div>
         </section>
@@ -893,110 +1129,247 @@
 
             <!-- Skills (animated bars) -->
             <div class="panel reveal">
-              <h3>Skills</h3>
-              <div class="stack">
+              <h3 class="skills-heading">Skills</h3>
+
+              <div class="skills-groups">
                 <!-- Frontend fundamentals -->
-                <h4 class="stack-title">Frontend</h4>
-                <div class="skill" data-level="95">
-                  <strong>HTML</strong>
-                  <div class="bar"><span></span></div>
-                </div>
-                <div class="skill" data-level="95">
-                  <strong>CSS</strong>
-                  <div class="bar"><span></span></div>
-                </div>
-                <div class="skill" data-level="90">
-                  <strong>JavaScript (ES6+)</strong>
-                  <div class="bar"><span></span></div>
-                </div>
+                <section class="skills-group">
+                  <h4 class="stack-title">Frontend</h4>
+                  <div class="skills-grid">
+                    <div class="skill-card">
+                      <span class="skill-icon html">
+                        <i class="fa-brands fa-html5"></i>
+                      </span>
+                      <div class="skill-text">
+                        <strong>HTML</strong>
+                        <span>Semantic, accessible markup</span>
+                      </div>
+                    </div>
+
+                    <div class="skill-card">
+                      <span class="skill-icon css">
+                        <i class="fa-brands fa-css3-alt"></i>
+                      </span>
+                      <div class="skill-text">
+                        <strong>CSS</strong>
+                        <span>Responsive layouts, flexbox, grid</span>
+                      </div>
+                    </div>
+
+                    <div class="skill-card">
+                      <span class="skill-icon js">
+                        <i class="fa-brands fa-js"></i>
+                      </span>
+                      <div class="skill-text">
+                        <strong>JavaScript (ES6+)</strong>
+                        <span>DOM, fetch, modular code</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
 
                 <!-- JS ecosystem & UI frameworks -->
-                <h4 class="stack-title">JavaScript & UI Frameworks</h4>
-                <div class="skill" data-level="90">
-                  <strong>React</strong>
-                  <div class="bar"><span></span></div>
-                </div>
-                <div class="skill" data-level="90">
-                  <strong>Tailwind CSS</strong>
-                  <div class="bar"><span></span></div>
-                </div>
-                <div class="skill" data-level="90">
-                  <strong>React Router</strong>
-                  <div class="bar"><span></span></div>
-                </div>
+                <section class="skills-group">
+                  <h4 class="stack-title">JavaScript & UI Frameworks</h4>
+                  <div class="skills-grid">
+                    <div class="skill-card">
+                      <span class="skill-icon react">
+                        <i class="fa-brands fa-react"></i>
+                      </span>
+                      <div class="skill-text">
+                        <strong>React</strong>
+                        <span>SPA, hooks, component-based UIs</span>
+                      </div>
+                    </div>
+
+                    <div class="skill-card">
+                      <span class="skill-icon tailwind">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                      </span>
+                      <div class="skill-text">
+                        <strong>Tailwind CSS</strong>
+                        <span>Utility-first styling</span>
+                      </div>
+                    </div>
+
+                    <div class="skill-card">
+                      <span class="skill-icon router">
+                        <i class="fa-solid fa-route"></i>
+                      </span>
+                      <div class="skill-text">
+                        <strong>React Router</strong>
+                        <span>SPA routing & protected routes</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
 
                 <!-- Backend & database -->
-                <h4 class="stack-title">Backend & Database</h4>
-                <div class="skill" data-level="70">
-                  <strong>Node.js</strong>
-                  <div class="bar"><span></span></div>
-                </div>
-                <div class="skill" data-level="70">
-                  <strong>Express.js</strong>
-                  <div class="bar"><span></span></div>
-                </div>
-                <div class="skill" data-level="70">
-                  <strong>MongoDB</strong>
-                  <div class="bar"><span></span></div>
-                </div>
+                <section class="skills-group">
+                  <h4 class="stack-title">Backend & Database</h4>
+                  <div class="skills-grid">
+                    <div class="skill-card">
+                      <span class="skill-icon node">
+                        <i class="fa-brands fa-node-js"></i>
+                      </span>
+                      <div class="skill-text">
+                        <strong>Node.js</strong>
+                        <span>REST APIs, server-side JS</span>
+                      </div>
+                    </div>
+
+                    <div class="skill-card">
+                      <span class="skill-icon express">
+                        <i class="fa-solid fa-server"></i>
+                      </span>
+                      <div class="skill-text">
+                        <strong>Express.js</strong>
+                        <span>Routing, middleware, JWT auth</span>
+                      </div>
+                    </div>
+
+                    <div class="skill-card">
+                      <span class="skill-icon mongo">
+                        <i class="fa-solid fa-database"></i>
+                      </span>
+                      <div class="skill-text">
+                        <strong>MongoDB</strong>
+                        <span>Document modeling & queries</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
 
                 <!-- Productivity & office tools -->
-                <h4 class="stack-title">Productivity & Office</h4>
-                <div class="skill" data-level="90">
-                  <strong>Microsoft Word</strong>
-                  <div class="bar"><span></span></div>
-                </div>
-                <div class="skill" data-level="82">
-                  <strong>Microsoft Excel</strong>
-                  <div class="bar"><span></span></div>
-                </div>
-                <div class="skill" data-level="85">
-                  <strong>PowerPoint</strong>
-                  <div class="bar"><span></span></div>
-                </div>
+                <section class="skills-group">
+                  <h4 class="stack-title">Productivity & Office</h4>
+                  <div class="skills-grid">
+                    <div class="skill-card">
+                      <span class="skill-icon office">
+                        <i class="fa-solid fa-file-word"></i>
+                      </span>
+                      <div class="skill-text">
+                        <strong>Microsoft Word</strong>
+                        <span>Documents, reports, formatting</span>
+                      </div>
+                    </div>
+
+                    <div class="skill-card">
+                      <span class="skill-icon office">
+                        <i class="fa-solid fa-file-excel"></i>
+                      </span>
+                      <div class="skill-text">
+                        <strong>Microsoft Excel</strong>
+                        <span>Spreadsheets & basic analysis</span>
+                      </div>
+                    </div>
+
+                    <div class="skill-card">
+                      <span class="skill-icon office">
+                        <i class="fa-solid fa-file-powerpoint"></i>
+                      </span>
+                      <div class="skill-text">
+                        <strong>PowerPoint</strong>
+                        <span>Presentations & slide design</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
 
                 <!-- Other relevant skills -->
-                <h4 class="stack-title">Other</h4>
-                <div class="skill" data-level="70">
-                  <strong>Video Editing</strong>
-                  <div class="bar"><span></span></div>
-                </div>
+                <section class="skills-group">
+                  <h4 class="stack-title">Other</h4>
+                  <div class="skills-grid">
+                    <div class="skill-card">
+                      <span class="skill-icon video">
+                        <i class="fa-solid fa-film"></i>
+                      </span>
+                      <div class="skill-text">
+                        <strong>Video Editing</strong>
+                        <span>Basic editing & content prep</span>
+                      </div>
+                    </div>
 
-                <div class="item">
-                  <strong>Typing</strong>
-                  <span class="muted">Accuracy: High • Speed: 25–30 WPM</span>
-                </div>
+                    <div class="skill-card">
+                      <span class="skill-icon typing">
+                        <i class="fa-solid fa-keyboard"></i>
+                      </span>
+                      <div class="skill-text">
+                        <strong>Typing</strong>
+                        <span>High accuracy • 25–30 WPM</span>
+                      </div>
+                    </div>
 
-                <div class="item">
-                  <strong>Data Operations</strong>
-                  <span class="muted"
-                    >Data entry, validation & managing time-sensitive
-                    datasets</span
-                  >
-                </div>
+                    <div class="skill-card">
+                      <span class="skill-icon data">
+                        <i class="fa-solid fa-table"></i>
+                      </span>
+                      <div class="skill-text">
+                        <strong>Data Operations</strong>
+                        <span>Entry, validation & time-sensitive datasets</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
             </div>
 
             <!-- Languages -->
             <div class="panel reveal">
-              <h3>Languages</h3>
-              <div class="stack">
-                <div class="skill" data-level="95">
-                  <strong>Bangla (Bengali)</strong>
-                  <div class="bar"><span></span></div>
-                </div>
-                <div class="skill" data-level="75">
-                  <strong>English</strong>
-                  <div class="bar"><span></span></div>
-                </div>
-                <div class="skill" data-level="65">
-                  <strong>Hindi</strong>
-                  <div class="bar"><span></span></div>
-                </div>
-                <div class="skill" data-level="60">
-                  <strong>Urdu</strong>
-                  <div class="bar"><span></span></div>
-                </div>
+              <h3 class="languages-heading">Languages</h3>
+
+              <div class="languages-grid">
+                <article class="lang-card">
+                  <span class="lang-icon lang-bn">
+                    <i class="fa-solid fa-language"></i>
+                  </span>
+                  <div class="lang-text">
+                    <strong>Bangla (Bengali)</strong>
+                    <span class="lang-level">Native</span>
+                    <span class="lang-note">Speaking, reading & writing</span>
+                  </div>
+                </article>
+
+                <article class="lang-card">
+                  <span class="lang-icon lang-en">
+                    <i class="fa-solid fa-globe"></i>
+                  </span>
+                  <div class="lang-text">
+                    <strong>English</strong>
+                    <span class="lang-level"
+                      >Professional working proficiency</span
+                    >
+                    <span class="lang-note"
+                      >Comfortable with communication & documentation</span
+                    >
+                  </div>
+                </article>
+
+                <article class="lang-card">
+                  <span class="lang-icon lang-hi">
+                    <i class="fa-solid fa-comments"></i>
+                  </span>
+                  <div class="lang-text">
+                    <strong>Hindi</strong>
+                    <span class="lang-level">Conversational</span>
+                    <span class="lang-note"
+                      >Able to understand and participate in discussions</span
+                    >
+                  </div>
+                </article>
+
+                <article class="lang-card">
+                  <span class="lang-icon lang-ur">
+                    <i class="fa-solid fa-comments"></i>
+                  </span>
+                  <div class="lang-text">
+                    <strong>Urdu</strong>
+                    <span class="lang-level">Basic understanding</span>
+                    <span class="lang-note"
+                      >Can follow simple conversations</span
+                    >
+                  </div>
+                </article>
               </div>
             </div>
 
