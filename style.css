@@ -827,7 +827,7 @@ dialog[open] {
 
 /* you already had styles for .to-top and .toast in your original file – keep them here if needed */
 
-/* === Premium dark/light tweaks for nav + key cards (add at bottom of style.css) === */
+/* === Premium dark/light tweaks for nav + key cards (UPDATED) =============== */
 
 /* Shared tokens for nav + elevated cards */
 :root {
@@ -889,56 +889,10 @@ header nav {
   color: #ffffff;
 }
 
-/* Hero badges (“Open to roles…”, “Remote friendly”) & mobile "Available" pill
-   – use theme-aware soft pill background */
+/* Hero badges (“Open to roles…”, “Remote friendly”) & mobile "Available" pill */
 .header .title .inline-flex,
 #mobileNav span.inline-flex {
   background: var(--pill-soft-bg);
-}
-
-/* Timeline (Education + Continuing Course) inner cards */
-.tl-body > div {
-  background: var(--card-elevated-bg) !important;
-  border-color: var(--card-elevated-border) !important;
-  box-shadow: var(--card-elevated-shadow);
-  backdrop-filter: blur(10px);
-}
-
-/* Skills & Languages – elevated, theme-aware cards */
-.skill-card,
-.lang-card {
-  background: var(--card-elevated-bg);
-  border-color: var(--card-elevated-border);
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.55);
-  backdrop-filter: blur(10px);
-}
-
-[data-theme="light"] .skill-card,
-[data-theme="light"] .lang-card {
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
-}
-
-/* Featured Projects – all project cards */
-#projects article {
-  background: var(--card-elevated-bg) !important;
-  border-color: var(--card-elevated-border) !important;
-  box-shadow: var(--card-elevated-shadow);
-  backdrop-filter: blur(10px);
-}
-
-/* Slightly different, softer shadow for light mode */
-[data-theme="light"] #projects article {
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
-}
-
-/* Header area inside each project card – subtle panel look */
-#projects article header {
-  background: linear-gradient(
-    135deg,
-    color-mix(in oklab, var(--card-elevated-bg) 88%, transparent 12%),
-    color-mix(in oklab, var(--card-elevated-bg) 96%, transparent 4%)
-  );
-  border-radius: 0.875rem;
 }
 
 /* Progress meters (course section) – lighter rails in light mode */
@@ -951,281 +905,38 @@ header nav {
   box-shadow: 0 0 0 3px rgba(191, 219, 254, 0.9);
 }
 
-
 /* ==========================================================================
-   PREMIUM HOVER EFFECTS – EDUCATION, SKILLS, LANGUAGES, PROJECTS
+   BASE ELEVATED CARDS – EDUCATION, SKILLS, LANGUAGES, PROJECTS
    ========================================================================== */
 
-@media (hover: hover) {
-  /* ---------------- Education cards ---------------- */
-
-  #education .tl-body > div {
-    position: relative;
-    overflow: hidden;
-    transform-origin: center;
-    transition:
-      transform 220ms cubic-bezier(0.19, 0.7, 0.3, 1),
-      box-shadow 220ms ease,
-      border-color 220ms ease,
-      background 220ms ease;
-  }
-
-  #education .tl-body > div::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    pointer-events: none;
-    background: conic-gradient(
-      from 210deg,
-      color-mix(in oklab, var(--brand-ui) 65%, transparent),
-      color-mix(in oklab, var(--brand-2) 65%, transparent),
-      color-mix(in oklab, var(--brand) 65%, transparent),
-      color-mix(in oklab, #38bdf8 65%, transparent),
-      color-mix(in oklab, var(--brand-ui) 65%, transparent)
-    );
-    opacity: 0;
-    transform: scale(1.06);
-    filter: blur(8px);
-    transition:
-      opacity 260ms ease,
-      transform 260ms ease,
-      filter 260ms ease;
-  }
-
-  #education .tl-body > div:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 22px 48px rgba(15, 23, 42, 0.8);
-    border-color: color-mix(in oklab, var(--brand-ui) 60%, var(--card-elevated-border) 40%);
-    background: color-mix(in oklab, var(--card-elevated-bg) 88%, #020617 12%);
-  }
-
-  [data-theme="light"] #education .tl-body > div:hover {
-    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
-    background: color-mix(in oklab, var(--card-elevated-bg) 92%, #e0f2fe 8%);
-  }
-
-  #education .tl-body > div:hover::before {
-    opacity: 0.9;
-    transform: scale(1.02);
-    filter: blur(14px);
-  }
-
-  #education .tl-body > div:hover h4 {
-    color: var(--brand-text);
-  }
-
-  /* ---------------- Skills cards ---------------- */
-
-  .skill-card {
-    position: relative;
-    overflow: hidden;
-    transform-origin: center;
-    transition:
-      transform 200ms cubic-bezier(0.2, 0.7, 0.3, 1),
-      box-shadow 200ms ease,
-      border-color 200ms ease,
-      background 200ms ease;
-  }
-
-  .skill-card::before {
-    content: "";
-    position: absolute;
-    inset-inline: 0;
-    top: 0;
-    height: 2px;
-    background: linear-gradient(
-      90deg,
-      color-mix(in oklab, var(--brand) 80%, transparent),
-      color-mix(in oklab, var(--brand-2) 80%, transparent)
-    );
-    opacity: 0;
-    transform: translateX(-30%);
-    transition:
-      opacity 220ms ease,
-      transform 280ms cubic-bezier(0.2, 0.7, 0.3, 1);
-  }
-
-  .skill-card:hover {
-    transform: translateY(-3px) scale(1.01);
-    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.72);
-    border-color: color-mix(in oklab, var(--brand-ui) 70%, var(--card-elevated-border) 30%);
-    background: color-mix(in oklab, var(--card-elevated-bg) 84%, #020617 16%);
-  }
-
-  [data-theme="light"] .skill-card:hover {
-    box-shadow: 0 16px 30px rgba(15, 23, 42, 0.16);
-    background: color-mix(in oklab, var(--card-elevated-bg) 92%, #e0f2fe 8%);
-  }
-
-  .skill-card:hover::before {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .skill-card:hover .skill-icon {
-    transform: translateY(-1px) scale(1.05);
-  }
-
-  .skill-icon {
-    transition:
-      transform 200ms cubic-bezier(0.24, 0.7, 0.3, 1),
-      box-shadow 200ms ease;
-  }
-
-  .skill-card:hover .skill-icon {
-    box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.3),
-      0 10px 22px rgba(15, 23, 42, 0.7);
-  }
-
-  /* ---------------- Languages cards ---------------- */
-
-  .lang-card {
-    position: relative;
-    overflow: hidden;
-    transform-origin: center;
-    transition:
-      transform 210ms cubic-bezier(0.22, 0.7, 0.3, 1),
-      box-shadow 210ms ease,
-      border-color 210ms ease,
-      background 210ms ease;
-  }
-
-  .lang-card::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    pointer-events: none;
-    background: radial-gradient(
-      circle at 0 0,
-      color-mix(in oklab, var(--brand-2) 60%, transparent),
-      transparent 55%
-    );
-    opacity: 0;
-    transform: translate3d(-10px, -8px, 0);
-    transition:
-      opacity 260ms ease,
-      transform 260ms ease;
-  }
-
-  .lang-card:hover {
-    transform: translateY(-3px) scale(1.01);
-    box-shadow: 0 20px 42px rgba(15, 23, 42, 0.75);
-    border-color: color-mix(in oklab, var(--brand-ui) 60%, var(--card-elevated-border) 40%);
-    background: color-mix(in oklab, var(--card-elevated-bg) 86%, #020617 14%);
-  }
-
-  [data-theme="light"] .lang-card:hover {
-    box-shadow: 0 18px 36px rgba(15, 23, 42, 0.16);
-    background: color-mix(in oklab, var(--card-elevated-bg) 92%, #e5f3ff 8%);
-  }
-
-  .lang-card:hover::before {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-
-  .lang-card:hover .lang-icon {
-    transform: translateY(-1px) scale(1.05);
-  }
-
-  .lang-icon {
-    transition:
-      transform 200ms cubic-bezier(0.24, 0.7, 0.3, 1),
-      box-shadow 200ms ease;
-  }
-
-  .lang-card:hover .lang-icon {
-    box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.35),
-      0 10px 22px rgba(15, 23, 42, 0.7);
-  }
-
-  /* ---------------- Featured Projects cards ---------------- */
-
-  #projects article {
-    position: relative;
-    overflow: hidden;
-    transform-origin: center;
-    transition:
-      transform 230ms cubic-bezier(0.22, 0.7, 0.3, 1),
-      box-shadow 230ms ease,
-      border-color 230ms ease,
-      background 230ms ease;
-  }
-
-  #projects article::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    pointer-events: none;
-    background: conic-gradient(
-      from 160deg,
-      color-mix(in oklab, var(--brand) 55%, transparent),
-      color-mix(in oklab, var(--brand-2) 55%, transparent),
-      color-mix(in oklab, #22c55e 55%, transparent),
-      color-mix(in oklab, #eab308 55%, transparent),
-      color-mix(in oklab, var(--brand) 55%, transparent)
-    );
-    mix-blend-mode: screen;
-    opacity: 0;
-    transform: scale(1.06) rotate(2deg);
-    filter: blur(16px);
-    transition:
-      opacity 260ms ease,
-      transform 260ms ease,
-      filter 260ms ease;
-  }
-
-  #projects article:hover {
-    transform: translateY(-6px) scale(1.012);
-    border-color: color-mix(in oklab, var(--brand-ui) 70%, var(--card-elevated-border) 30%);
-    background: color-mix(in oklab, var(--card-elevated-bg) 84%, #020617 16%);
-    box-shadow: 0 26px 60px rgba(15, 23, 42, 0.9);
-  }
-
-  [data-theme="light"] #projects article:hover {
-    background: color-mix(in oklab, var(--card-elevated-bg) 92%, #e0f2fe 8%);
-    box-shadow: 0 24px 52px rgba(15, 23, 42, 0.2);
-  }
-
-  #projects article:hover::before {
-    opacity: 1;
-    transform: scale(1.02) rotate(0deg);
-    filter: blur(22px);
-  }
-
-  #projects article:hover header {
-    background: linear-gradient(
-      135deg,
-      color-mix(in oklab, var(--card-elevated-bg) 82%, var(--brand-ui) 18%),
-      color-mix(in oklab, var(--card-elevated-bg) 88%, var(--brand-2) 12%)
-    );
-  }
-
-  #projects article:hover h4,
-  #projects article:hover .text-xs {
-    color: var(--brand-text);
-  }
+/* Core elevated look shared across key cards */
+.tl-body > div,
+.skill-card,
+.lang-card,
+#projects article {
+  background: var(--card-elevated-bg);
+  border: 1px solid var(--card-elevated-border);
+  box-shadow: var(--card-elevated-shadow);
+  backdrop-filter: blur(10px);
+  border-radius: 0.9rem;
 }
 
-/* Respect reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  #education .tl-body > div,
-  .skill-card,
-  .lang-card,
-  #projects article {
-    transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
-    transform: none !important;
-  }
+/* Slightly softer shadows in light mode */
+[data-theme="light"] .tl-body > div,
+[data-theme="light"] .skill-card,
+[data-theme="light"] .lang-card,
+[data-theme="light"] #projects article {
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.12);
+}
 
-  #education .tl-body > div::before,
-  .skill-card::before,
-  .lang-card::before,
-  #projects article::before {
-    display: none;
-  }
+/* Project headers – subtle panel look */
+#projects article header {
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--card-elevated-bg) 88%, transparent 12%),
+    color-mix(in oklab, var(--card-elevated-bg) 96%, transparent 4%)
+  );
+  border-radius: 0.875rem;
 }
 
 /* ==========================================================================
@@ -1233,7 +944,7 @@ header nav {
    Targets: Education cards, Skills cards, Languages cards, Featured Projects
    ========================================================================== */
 
-/* Per-section accent color (you can tweak these) */
+/* Default accent per card – can be overridden per-project */
 #education .tl-body > div,
 .skill-card,
 .lang-card,
@@ -1241,7 +952,7 @@ header nav {
   --card-accent: var(--brand-ui);
 }
 
-/* Slightly different accents for each featured project (optional) */
+/* Per-project accent overrides */
 #projects article:nth-of-type(1) {
   --card-accent: #22c55e; /* ProCleaning – emerald */
 }
@@ -1253,7 +964,7 @@ header nav {
 }
 
 @media (hover: hover) {
-  /* Base interactive card behaviour */
+  /* Interactive shell setup */
   #education .tl-body > div,
   .skill-card,
   .lang-card,
@@ -1268,11 +979,11 @@ header nav {
       background 220ms ease;
   }
 
-  /* Gradient border halo (shared for all these cards) */
-  #education .tl-body > div::after,
-  .skill-card::after,
-  .lang-card::after,
-  #projects article::after {
+  /* Gradient halo that “wraps” the card on hover */
+  #education .tl-body > div::before,
+  .skill-card::before,
+  .lang-card::before,
+  #projects article::before {
     content: "";
     position: absolute;
     inset: -1px;
@@ -1283,13 +994,13 @@ header nav {
       color-mix(in oklab, var(--card-accent) 85%, transparent),
       color-mix(in oklab, var(--brand-2) 70%, transparent),
       color-mix(in oklab, var(--brand) 70%, transparent),
-      color-mix(in oklab, #22c55e 65%, transparent),
+      color-mix(in oklab, #22c55e 60%, transparent),
       color-mix(in oklab, #eab308 60%, transparent),
       color-mix(in oklab, var(--card-accent) 85%, transparent)
     );
     opacity: 0;
     transform: scale(1.06);
-    filter: blur(16px);
+    filter: blur(14px);
     mix-blend-mode: screen;
     transition:
       opacity 260ms ease,
@@ -1297,7 +1008,7 @@ header nav {
       filter 260ms ease;
   }
 
-  /* Hover: lift, premium border, colorful glow shadow (dark mode) */
+  /* Hover: lift, premium border, colorful glow (dark mode) */
   #education .tl-body > div:hover,
   .skill-card:hover,
   .lang-card:hover,
@@ -1312,7 +1023,7 @@ header nav {
       0 0 80px color-mix(in oklab, var(--brand-2) 40%, transparent);
   }
 
-  /* Hover: light mode variant (so it doesn’t look too neon) */
+  /* Hover: softer, cleaner glow in light mode */
   [data-theme="light"] #education .tl-body > div:hover,
   [data-theme="light"] .skill-card:hover,
   [data-theme="light"] .lang-card:hover,
@@ -1325,17 +1036,17 @@ header nav {
       0 0 64px color-mix(in oklab, var(--brand-2) 28%, transparent);
   }
 
-  /* Make the gradient halo visible on hover */
-  #education .tl-body > div:hover::after,
-  .skill-card:hover::after,
-  .lang-card:hover::after,
-  #projects article:hover::after {
+  /* Make the halo visible on hover */
+  #education .tl-body > div:hover::before,
+  .skill-card:hover::before,
+  .lang-card:hover::before,
+  #projects article:hover::before {
     opacity: 1;
     transform: scale(1.02);
     filter: blur(22px);
   }
 
-  /* Extra polish for icons inside Skills & Languages cards */
+  /* Icon polish for Skills & Languages */
   .skill-icon,
   .lang-icon {
     transition:
@@ -1351,7 +1062,7 @@ header nav {
       0 12px 26px rgba(15, 23, 42, 0.9);
   }
 
-  /* Optional: slightly tint project headers on hover for extra depth */
+  /* Slight tint on project headers for extra depth */
   #projects article:hover header {
     background: linear-gradient(
       135deg,
@@ -1374,10 +1085,10 @@ header nav {
     transform: none !important;
   }
 
-  #education .tl-body > div::after,
-  .skill-card::after,
-  .lang-card::after,
-  #projects article::after {
+  #education .tl-body > div::before,
+  .skill-card::before,
+  .lang-card::before,
+  #projects article::before {
     display: none;
   }
 
@@ -1387,3 +1098,96 @@ header nav {
   }
 }
 
+
+/* ==========================================================================
+   MOBILE / TOUCH PREMIUM TREATMENT
+   Education cards behave like Featured Projects cards on mobile
+   ========================================================================== */
+
+@media (hover: none) and (pointer: coarse) {
+  /* Base “always-on” premium look for Education + Projects on mobile */
+  #education .tl-body > div,
+  #projects article {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    /* Slightly closer to the desktop hover state, but toned down */
+    border-color: color-mix(in oklab, var(--card-accent) 55%, var(--card-elevated-border) 45%);
+    background: color-mix(in oklab, var(--card-elevated-bg) 88%, #020617 12%);
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--card-accent) 35%, transparent),
+      0 14px 30px rgba(15, 23, 42, 0.85);
+  }
+
+  [data-theme="light"] #education .tl-body > div,
+  [data-theme="light"] #projects article {
+    background: color-mix(in oklab, var(--card-elevated-bg) 92%, #e0f2fe 8%);
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--card-accent) 40%, transparent),
+      0 14px 28px rgba(15, 23, 42, 0.16);
+  }
+
+  /* Soft gradient frame that is always visible on mobile, not just “hover” */
+  #education .tl-body > div::before,
+  #projects article::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    background: conic-gradient(
+      from 185deg,
+      color-mix(in oklab, var(--card-accent) 80%, transparent),
+      color-mix(in oklab, var(--brand-2) 60%, transparent),
+      color-mix(in oklab, var(--brand) 60%, transparent),
+      color-mix(in oklab, #22c55e 45%, transparent),
+      color-mix(in oklab, #eab308 45%, transparent),
+      color-mix(in oklab, var(--card-accent) 80%, transparent)
+    );
+    opacity: 0.55;
+    transform: scale(1.03);
+    filter: blur(18px);
+    mix-blend-mode: screen;
+  }
+
+  [data-theme="light"] #education .tl-body > div::before,
+  [data-theme="light"] #projects article::before {
+    opacity: 0.38;
+    filter: blur(14px);
+  }
+
+  /* Tap / press feedback – feels like the desktop hover, but on tap */
+  #education .tl-body > div:active,
+  #projects article:active {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--card-accent) 70%, transparent),
+      0 20px 42px rgba(15, 23, 42, 0.95),
+      0 0 34px color-mix(in oklab, var(--card-accent) 55%, transparent),
+      0 0 70px color-mix(in oklab, var(--brand-2) 35%, transparent);
+    background: color-mix(in oklab, var(--surface-1) 84%, #020617 16%);
+  }
+
+  [data-theme="light"] #education .tl-body > div:active,
+  [data-theme="light"] #projects article:active {
+    background: color-mix(in oklab, var(--surface-1) 90%, #dbeafe 10%);
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--card-accent) 75%, transparent),
+      0 20px 40px rgba(15, 23, 42, 0.2),
+      0 0 30px color-mix(in oklab, var(--card-accent) 45%, transparent);
+  }
+
+  /* Slight text & header emphasis when pressed */
+  #education .tl-body > div:active h4,
+  #projects article:active h4 {
+    color: var(--brand-text);
+  }
+
+  #projects article:active header {
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--surface-1) 78%, var(--card-accent) 22%),
+      color-mix(in oklab, var(--surface-1) 86%, var(--brand-2) 14%)
+    );
+  }
+}
