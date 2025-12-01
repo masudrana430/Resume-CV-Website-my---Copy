@@ -95,6 +95,11 @@
                 >Education</a
               >
               <a
+                href="#certificates"
+                class="relative hover:text-indigo-300 transition-colors after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-gradient-to-r after:from-indigo-400 after:to-sky-400 after:transition-all after:duration-300 hover:after:w-full"
+                >Certificates</a
+              >
+              <a
                 href="#projects"
                 class="relative hover:text-indigo-300 transition-colors after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-gradient-to-r after:from-indigo-400 after:to-sky-400 after:transition-all after:duration-300 hover:after:w-full"
                 >Projects</a
@@ -1348,46 +1353,292 @@
               </div>
 
               <!-- Certificates -->
-              <div class="panel reveal">
-                <h3>
-                  <i class="fa-solid fa-certificate" aria-hidden="true"></i>
-                  Certificates
-                </h3>
-                <div class="cert-view">
-                  <div class="cert-actions">
-                    <button class="btn btn--primary" id="openCert">
-                      <i class="fa-solid fa-up-right-from-square"></i
-                      ><span>Open PDF</span>
-                    </button>
-                    <a
-                      class="btn"
-                      id="downloadCert"
-                      href="images/5bedfd90-7fa8-47c9-945d-9d93d50dc8c7.png"
-                      download
-                      ><i class="fa-solid fa-download"></i
-                      ><span>Download PNG</span></a
+              <div href="#certificates" class="panel reveal scroll-mt-32" id="certificates">
+                <div class="flex items-center justify-between gap-3 mb-2">
+                  <h3 class="flex items-center gap-2">
+                    <i class="fa-solid fa-certificate" aria-hidden="true"></i>
+                    <span>Certificates</span>
+                  </h3>
+                  <span
+                    class="hidden sm:inline-flex items-center gap-2 rounded-full border border-emerald-400/60 bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold tracking-wide text-emerald-200 uppercase"
+                  >
+                    <span
+                      class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"
+                    ></span>
+                    SkillUp · 6 verified courses
+                  </span>
+                </div>
+
+                <p class="muted text-sm mb-4">
+                  Short, intensive courses focused on communication,
+                  presentation, corporate behavior, and core office
+                  productivity. All issued by SkillUp.
+                </p>
+
+                <div
+                  class="cert-view grid gap-4 md:grid-cols-[minmax(0,1.25fr),minmax(0,2fr)] items-start"
+                >
+                  <!-- LEFT: certificate list -->
+                  <div class="cert-list space-y-2">
+                    <!-- 1) Corporate Etiquette -->
+                    <button
+                      type="button"
+                      class="cert-pill is-active"
+                      data-cert-pdf="https://lms10.s3.ap-southeast-1.amazonaws.com/skillup/certificates/692da5ec8d5f3.pdf"
+                      data-cert-title="Corporate Etiquette"
+                      data-cert-tag="Professional conduct"
                     >
-                    <div class="cert-toggle actions">
-                      <button class="btn" id="toggleView">
-                        <i class="fa-regular fa-file"></i> Toggle PDF/Image
+                      <div class="flex items-start gap-2">
+                        <span
+                          class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-300 text-[13px]"
+                        >
+                          <i class="fa-solid fa-briefcase"></i>
+                        </span>
+                        <div class="text-left">
+                          <p class="text-[13px] font-semibold text-slate-400">
+                            Corporate Etiquette
+                          </p>
+                          <p class="text-[11px] text-slate-400">
+                            Professional behavior & workplace presence
+                          </p>
+                        </div>
+                      </div>
+                      <span
+                        class="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-400"
+                      >
+                        <i class="fa-regular fa-circle-check text-[9px]"></i>
+                        Issued
+                      </span>
+                    </button>
+
+                    <!-- 2) Presentation & Public Speaking -->
+                    <button
+                      type="button"
+                      class="cert-pill"
+                      data-cert-pdf="https://lms10.s3.ap-southeast-1.amazonaws.com/skillup/certificates/692dae632287f.pdf"
+                      data-cert-title="Presentation &amp; Public Speaking"
+                      data-cert-tag="Speaking & slides"
+                    >
+                      <div class="flex items-start gap-2">
+                        <span
+                          class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-sky-500/15 text-sky-300 text-[13px]"
+                        >
+                          <i class="fa-solid fa-microphone-lines"></i>
+                        </span>
+                        <div class="text-left">
+                          <p class="text-[13px] font-semibold text-slate-400">
+                            Presentation &amp; Public Speaking
+                          </p>
+                          <p class="text-[11px] text-slate-400">
+                            Stage confidence, narrative & visual storytelling
+                          </p>
+                        </div>
+                      </div>
+                      <span
+                        class="inline-flex items-center gap-1 rounded-full bg-sky-500/10 px-2 py-0.5 text-[10px] font-medium text-sky-400"
+                      >
+                        <i class="fa-regular fa-circle-check text-[9px]"></i>
+                        Issued
+                      </span>
+                    </button>
+
+                    <!-- 3) Communication Hacks -->
+                    <button
+                      type="button"
+                      class="cert-pill"
+                      data-cert-pdf="https://lms10.s3.ap-southeast-1.amazonaws.com/skillup/certificates/692db1a0c76ee.pdf"
+                      data-cert-title="Communication Hacks"
+                      data-cert-tag="Everyday communication"
+                    >
+                      <div class="flex items-start gap-2">
+                        <span
+                          class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-indigo-500/15 text-indigo-300 text-[13px]"
+                        >
+                          <i class="fa-solid fa-comments"></i>
+                        </span>
+                        <div class="text-left">
+                          <p class="text-[13px] font-semibold text-slate-400">
+                            Communication Hacks
+                          </p>
+                          <p class="text-[11px] text-slate-400">
+                            Practical shortcuts to clearer messaging
+                          </p>
+                        </div>
+                      </div>
+                      <span
+                        class="inline-flex items-center gap-1 rounded-full bg-indigo-500/10 px-2 py-0.5 text-[10px] font-medium text-indigo-400"
+                      >
+                        <i class="fa-regular fa-circle-check text-[9px]"></i>
+                        Issued
+                      </span>
+                    </button>
+
+                    <!-- 4) CV Writing & Interview -->
+                    <button
+                      type="button"
+                      class="cert-pill"
+                      data-cert-pdf="https://lms10.s3.ap-southeast-1.amazonaws.com/skillup/certificates/692db86af3a6e.pdf"
+                      data-cert-title="CV Writing &amp; Interview"
+                      data-cert-tag="Career prep"
+                    >
+                      <div class="flex items-start gap-2">
+                        <span
+                          class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber-500/15 text-amber-300 text-[13px]"
+                        >
+                          <i class="fa-solid fa-file-lines"></i>
+                        </span>
+                        <div class="text-left">
+                          <p class="text-[13px] font-semibold text-slate-400">
+                            CV Writing &amp; Interview
+                          </p>
+                          <p class="text-[11px] text-slate-400">
+                            Portfolio-ready CV and interview strategy
+                          </p>
+                        </div>
+                      </div>
+                      <span
+                        class="inline-flex items-center gap-1 rounded-full bg-amber-500/10 px-2 py-0.5 text-[10px] font-medium text-amber-400"
+                      >
+                        <i class="fa-regular fa-circle-check text-[9px]"></i>
+                        Issued
+                      </span>
+                    </button>
+
+                    <!-- 5) Communication Secrets -->
+                    <button
+                      type="button"
+                      class="cert-pill"
+                      data-cert-pdf="https://lms10.s3.ap-southeast-1.amazonaws.com/skillup/certificates/692db97881b33.pdf"
+                      data-cert-title="Communication Secrets"
+                      data-cert-tag="Advanced communication"
+                    >
+                      <div class="flex items-start gap-2">
+                        <span
+                          class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-fuchsia-500/15 text-fuchsia-300 text-[13px]"
+                        >
+                          <i class="fa-solid fa-user-group"></i>
+                        </span>
+                        <div class="text-left">
+                          <p class="text-[13px] font-semibold text-slate-400">
+                            Communication Secrets
+                          </p>
+                          <p class="text-[11px] text-slate-400">
+                            Deep dive on influence & difficult conversations
+                          </p>
+                        </div>
+                      </div>
+                      <span
+                        class="inline-flex items-center gap-1 rounded-full bg-fuchsia-500/10 px-2 py-0.5 text-[10px] font-medium text-fuchsia-400"
+                      >
+                        <i class="fa-regular fa-circle-check text-[9px]"></i>
+                        Issued
+                      </span>
+                    </button>
+
+                    <!-- 6) Microsoft Office Starter Course -->
+                    <button
+                      type="button"
+                      class="cert-pill"
+                      data-cert-pdf="https://lms10.s3.ap-southeast-1.amazonaws.com/skillup/certificates/68bb1a268250b.pdf"
+                      data-cert-title="Microsoft Office Starter Course"
+                      data-cert-tag="Office tools"
+                    >
+                      <div class="flex items-start gap-2">
+                        <span
+                          class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-slate-500/15 text-slate-100 text-[13px]"
+                        >
+                          <i class="fa-solid fa-table-cells-large"></i>
+                        </span>
+                        <div class="text-left">
+                          <p class="text-[13px] font-semibold text-slate-400">
+                            Microsoft Office Starter Course
+                          </p>
+                          <p class="text-[11px] text-slate-400">
+                            Word, Excel &amp; PowerPoint fundamentals
+                          </p>
+                        </div>
+                      </div>
+                      <span
+                        class="inline-flex items-center gap-1 rounded-full bg-slate-500/10 px-2 py-0.5 text-[10px] font-medium text-slate-400"
+                      >
+                        <i class="fa-regular fa-circle-check text-[9px]"></i>
+                        Issued
+                      </span>
+                    </button>
+                  </div>
+
+                  <!-- RIGHT: viewer -->
+                  <div class="cert-frame">
+                    <div
+                      class="cert-frame-head flex flex-wrap items-center justify-between gap-2 mb-2"
+                    >
+                      <div>
+                        <p
+                          class="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500"
+                        >
+                          Current certificate
+                        </p>
+                        <h4
+                          id="certTitle"
+                          class="mt-1 text-sm font-semibold text-slate-500 leading-snug"
+                        >
+                          Corporate Etiquette
+                        </h4>
+                        <p id="certTag" class="text-[11px] text-slate-400">
+                          Professional conduct
+                        </p>
+                      </div>
+                      <div class="flex flex-wrap gap-1.5">
+                        <span
+                          class="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-400"
+                        >
+                          <i class="fa-regular fa-file-pdf text-[10px]"></i>
+                          PDF
+                        </span>
+                        <span
+                          class="inline-flex items-center gap-1 rounded-full bg-slate-500/15 px-2 py-0.5 text-[10px] font-medium text-slate-400"
+                        >
+                          <i class="fa-regular fa-clock text-[10px]"></i>
+                          Self-paced
+                        </span>
+                      </div>
+                    </div>
+
+                    <div
+                      class="cert-frame-body rounded-xl overflow-hidden border border-slate-700/70 bg-slate-950/70"
+                    >
+                      <object
+                        id="certObj"
+                        class="pdf-embed"
+                        data=""
+                        type="application/pdf" aria-label="Embedded certificate
+                        PDF" >
+                      </object>
+                      <img
+                        id="certImg"
+                        class="cert-img"
+                        src=""
+                        alt="Certificate image preview"
+                        loading="lazy"
+                        style="display: none"
+                      />
+                    </div>
+
+                    <div class="cert-frame-actions flex flex-wrap gap-2 mt-3">
+                      <button class="btn btn--primary" id="openCert">
+                        <i class="fa-solid fa-up-right-from-square"></i>
+                        <span>Open in new tab</span>
+                      </button>
+                      <a class="btn" id="downloadCert" href="#" download>
+                        <i class="fa-solid fa-download"></i>
+                        <span>Download PDF</span>
+                      </a>
+                      <button class="btn btn--ghost" id="toggleView">
+                        <i class="fa-regular fa-file"></i>
+                        <span>Toggle PDF / Image</span>
                       </button>
                     </div>
                   </div>
-                  <object
-                    id="certObj"
-                    class="pdf-embed"
-                    data="https://lms10.s3.ap-southeast-1.amazonaws.com/skillup/certificates/68bb1a268250b.pdf"
-                    type="application/pdf"
-                    aria-label="Embedded certificate PDF"
-                  ></object>
-                  <img
-                    id="certImg"
-                    class="cert-img"
-                    src="images/5bedfd90-7fa8-47c9-945d-9d93d50dc8c7.png"
-                    alt="Certificate image"
-                    loading="lazy"
-                    style="display: none"
-                  />
                 </div>
               </div>
 

@@ -1192,3 +1192,210 @@ header nav {
   }
 }
 
+/* ================= Certificates layout & base look ================= */
+
+.cert-view {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .cert-view {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 2fr);
+    align-items: flex-start;
+  }
+}
+
+.cert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Pill list items (left side) */
+.cert-pill {
+  --card-accent: var(--brand-ui);
+
+  width: 100%;
+  border-radius: 0.9rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: color-mix(in oklab, var(--surface-1) 94%, #020617 6%);
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  text-align: left;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms cubic-bezier(0.22, 0.7, 0.3, 1);
+}
+
+.cert-pill:is(:hover, :focus-visible) {
+  border-color: color-mix(in oklab, var(--card-accent) 70%, var(--border) 30%);
+  background: color-mix(in oklab, var(--surface-1) 86%, #020617 14%);
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 28px rgba(15, 23, 42, 0.8),
+    0 0 24px color-mix(in oklab, var(--card-accent) 40%, transparent);
+}
+
+.cert-pill:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--card-accent) 75%, #ffffff 25%);
+  outline-offset: 2px;
+}
+
+/* Active selection */
+.cert-pill.is-active {
+  border-color: color-mix(in oklab, var(--card-accent) 75%, var(--border) 25%);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--card-accent) 75%, transparent),
+    0 16px 36px rgba(15, 23, 42, 0.9);
+  background: radial-gradient(
+      circle at 0 0,
+      color-mix(in oklab, var(--card-accent) 26%, transparent),
+      transparent 55%
+    ),
+    color-mix(in oklab, var(--surface-1) 84%, #020617 16%);
+}
+
+/* Light mode variants */
+[data-theme="light"] .cert-pill {
+  background: #ffffff;
+  border-color: rgba(148, 163, 184, 0.6);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="light"] .cert-pill:is(:hover, :focus-visible) {
+  background: color-mix(in oklab, #ffffff 92%, #e0f2fe 8%);
+  box-shadow:
+    0 10px 24px rgba(15, 23, 42, 0.14),
+    0 0 18px color-mix(in oklab, var(--card-accent) 28%, transparent);
+}
+
+[data-theme="light"] .cert-pill.is-active {
+  box-shadow:
+    0 12px 30px rgba(15, 23, 42, 0.18),
+    0 0 24px color-mix(in oklab, var(--card-accent) 40%, transparent);
+}
+
+/* Right side viewer */
+.cert-frame {
+  --card-accent: var(--brand-ui);
+
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  padding: 0.75rem;
+  background: color-mix(in oklab, var(--surface-1) 92%, #020617 8%);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.7);
+}
+
+[data-theme="light"] .cert-frame {
+  background: #ffffff;
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.14);
+}
+
+/* Small gradient halo on hover */
+@media (hover: hover) {
+  .cert-frame {
+    position: relative;
+    overflow: hidden;
+    transform-origin: center;
+    transition:
+      transform 220ms cubic-bezier(0.22, 0.7, 0.3, 1),
+      box-shadow 220ms ease,
+      border-color 220ms ease,
+      background 220ms ease;
+  }
+
+  .cert-frame::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(1.05);
+    filter: blur(18px);
+    mix-blend-mode: screen;
+    background: conic-gradient(
+      from 180deg,
+      color-mix(in oklab, var(--card-accent) 80%, transparent),
+      color-mix(in oklab, var(--brand-2) 70%, transparent),
+      color-mix(in oklab, var(--brand) 70%, transparent),
+      color-mix(in oklab, #22c55e 60%, transparent),
+      color-mix(in oklab, #eab308 60%, transparent),
+      color-mix(in oklab, var(--card-accent) 80%, transparent)
+    );
+    transition:
+      opacity 260ms ease,
+      transform 260ms ease,
+      filter 260ms ease;
+  }
+
+  .cert-frame:hover {
+    transform: translateY(-4px) scale(1.01);
+    border-color: color-mix(in oklab, var(--card-accent) 70%, var(--border) 30%);
+    background: color-mix(in oklab, var(--surface-1) 86%, #020617 14%);
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--card-accent) 70%, transparent),
+      0 24px 52px rgba(15, 23, 42, 0.95),
+      0 0 40px color-mix(in oklab, var(--card-accent) 50%, transparent);
+  }
+
+  [data-theme="light"] .cert-frame:hover {
+    background: color-mix(in oklab, #ffffff 92%, #e0f2fe 8%);
+    box-shadow:
+      0 20px 46px rgba(15, 23, 42, 0.18),
+      0 0 32px color-mix(in oklab, var(--card-accent) 40%, transparent);
+  }
+
+  .cert-frame:hover::before {
+    opacity: 1;
+    transform: scale(1.01);
+    filter: blur(22px);
+  }
+}
+
+/* Viewer body */
+.cert-frame-body {
+  border-radius: 0.875rem;
+  overflow: hidden;
+}
+
+/* Ensure PDF height is reasonable on all devices */
+.pdf-embed {
+  width: 100%;
+  height: 260px;
+  border: none;
+}
+
+@media (min-width: 768px) {
+  .pdf-embed {
+    height: 380px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pdf-embed {
+    height: 440px;
+  }
+}
+
+/* Certificates – reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .cert-pill,
+  .cert-frame {
+    transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+    transform: none !important;
+  }
+
+  .cert-frame::before {
+    display: none;
+  }
+}
+

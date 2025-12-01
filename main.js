@@ -543,3 +543,93 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+
+// ===== Certificates: multi-PDF gallery =====
+(function () {
+  const certPills = document.querySelectorAll(".cert-pill[data-cert-pdf]");
+  const certObj = document.getElementById("certObj");
+  const certImg = document.getElementById("certImg");
+  const certTitleEl = document.getElementById("certTitle");
+  const certTagEl = document.getElementById("certTag");
+  const openBtn = document.getElementById("openCert");
+  const downloadLink = document.getElementById("downloadCert");
+  const toggleBtn = document.getElementById("toggleView");
+
+  if (!certPills.length || !certObj || !openBtn || !downloadLink) return;
+
+  let current = {
+    pdf: "",
+    image: "",
+    title: "",
+    tag: "",
+  };
+  let showPdf = true;
+
+  function applyCert(data) {
+    current = data;
+
+    // Update active pill
+    certPills.forEach((pill) => {
+      pill.classList.toggle("is-active", pill === data.element);
+    });
+
+    // Update viewer
+    certObj.setAttribute("data", data.pdf || "");
+    if (certImg) {
+      if (data.image) {
+        certImg.src = data.image;
+      }
+      certImg.style.display = showPdf || !data.image ? "none" : "block";
+      certObj.style.display = showPdf || !data.image ? "block" : "none";
+    }
+
+    // Update text
+    if (certTitleEl) certTitleEl.textContent = data.title || "Certificate";
+    if (certTagEl) certTagEl.textContent = data.tag || "";
+
+    // Update download link (PDF)
+    downloadLink.href = data.pdf || "#";
+    const safeName =
+      (data.title || "certificate").replace(/\s+/g, "-").toLowerCase() +
+      ".pdf";
+    downloadLink.download = safeName;
+  }
+
+  function pillToData(pill) {
+    return {
+      element: pill,
+      pdf: pill.dataset.certPdf || "",
+      image: pill.dataset.certImg || "",
+      title: pill.dataset.certTitle || pill.textContent.trim(),
+      tag: pill.dataset.certTag || "",
+    };
+  }
+
+  certPills.forEach((pill) => {
+    pill.addEventListener("click", () => applyCert(pillToData(pill)));
+  });
+
+  // Initial selection = first pill
+  applyCert(pillToData(certPills[0]));
+
+  // Open in new tab
+  openBtn.addEventListener("click", () => {
+    if (current.pdf) {
+      window.open(current.pdf, "_blank", "noopener");
+    }
+  });
+
+  // Toggle PDF vs image (if you later add PNG/JPG previews)
+  if (toggleBtn && certImg) {
+    toggleBtn.addEventListener("click", () => {
+      showPdf = !showPdf;
+      if (!current.image) {
+        // No image available – always show PDF
+        showPdf = true;
+      }
+      certObj.style.display = showPdf ? "block" : "none";
+      certImg.style.display = showPdf ? "none" : "block";
+    });
+  }
+})();
