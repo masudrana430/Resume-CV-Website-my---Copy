@@ -1399,3 +1399,493 @@ header nav {
   }
 }
 
+/* ================================
+   Premium "Let's talk" contact modal
+   ================================ */
+
+#contactModal .contact-modal-head {
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--surface-2) 78%, #020617 22%),
+    color-mix(in oklab, var(--surface-1) 82%, #020617 18%)
+  );
+  color: var(--text);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+[data-theme="light"] #contactModal .contact-modal-head {
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--surface-2) 96%, #ffffff 4%),
+    color-mix(in oklab, var(--surface-1) 96%, #ffffff 4%)
+  );
+}
+
+/* Body */
+#contactModal .contact-modal-body {
+  --panel-top: color-mix(in oklab, var(--surface-1) 94%, #000000 70%);
+  --panel-base: color-mix(in oklab, var(--surface-1) 86%, #020617 72%);
+  background: radial-gradient(circle at 0 0, rgba(129, 140, 248, 0.18), transparent 55%),
+    radial-gradient(circle at 100% 0, rgba(45, 212, 191, 0.16), transparent 55%),
+    linear-gradient(180deg, var(--panel-top), var(--panel-base));
+  padding: 16px 16px 14px;
+  border-top: 1px solid var(--border);
+  backdrop-filter: blur(8px) saturate(118%);
+}
+
+[data-theme="light"] #contactModal .contact-modal-body {
+  --panel-top: color-mix(in oklab, var(--surface-2) 98%, #ffffff 2%);
+  --panel-base: color-mix(in oklab, var(--surface-1) 98%, #ffffff 2%);
+  background: radial-gradient(circle at 0 0, rgba(129, 140, 248, 0.12), transparent 55%),
+    radial-gradient(circle at 100% 0, rgba(45, 212, 191, 0.1), transparent 55%),
+    linear-gradient(180deg, var(--panel-top), var(--panel-base));
+}
+
+/* Form layout */
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 14px;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.contact-field-full {
+  grid-column: 1 / -1;
+}
+
+.contact-field label {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Inputs */
+#contactModal input,
+#contactModal select,
+#contactModal textarea {
+  width: 100%;
+  padding: 9px 11px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface-1) 88%, #020617 12%);
+  color: var(--text);
+  font-size: 13px;
+  resize: vertical;
+  transition:
+    border-color 0.16s ease,
+    box-shadow 0.16s ease,
+    background 0.16s ease,
+    transform 0.12s ease;
+}
+
+#contactModal textarea {
+  min-height: 110px;
+}
+
+#contactModal input::placeholder,
+#contactModal textarea::placeholder {
+  color: color-mix(in oklab, var(--muted) 90%, #ffffff 10%);
+}
+
+#contactModal input:focus,
+#contactModal select:focus,
+#contactModal textarea:focus {
+  outline: none;
+  border-color: var(--brand-ui);
+  box-shadow: 0 0 0 3px var(--ring);
+  background: color-mix(in oklab, var(--surface-1) 85%, #020617 15%);
+  transform: translateY(-1px);
+}
+
+[data-theme="light"] #contactModal input,
+[data-theme="light"] #contactModal select,
+[data-theme="light"] #contactModal textarea {
+  background: #ffffff;
+}
+
+/* Footer */
+.contact-footer {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px dashed color-mix(in oklab, var(--border) 85%, transparent);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--muted);
+  max-width: 60%;
+}
+
+.contact-meta .hint {
+  margin: 0;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* Live badge */
+.badge-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: color-mix(in oklab, var(--surface-1) 88%, #16a34a 12%);
+  color: #16a34a 20%;
+  border: 1px solid rgba(34, 197, 94, 0.6);
+}
+
+.badge-live .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+  animation: badge-pulse 1.4s ease-out infinite;
+}
+
+@keyframes badge-pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  #contactModal {
+    max-width: 100%;
+    margin: 0 16px;
+  }
+
+  #contactModal .contact-modal-body {
+    padding: 14px 12px 12px;
+  }
+
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-meta {
+    max-width: 100%;
+  }
+
+  .contact-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contact-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* Reduced motion – keep it calm */
+@media (prefers-reduced-motion: reduce) {
+  #contactModal input,
+  #contactModal select,
+  #contactModal textarea,
+  .badge-live .dot {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* ================================
+   Premium contact fields
+   ================================ */
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+}
+
+.contact-field {
+  position: relative;
+  padding: 10px 11px 9px;
+  border-radius: 0.9rem;
+  background: color-mix(in oklab, var(--surface-1) 92%, #020617 8%);
+  border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.6);
+  overflow: hidden;
+}
+
+[data-theme="light"] .contact-field {
+  background: #ffffff;
+  border-color: rgba(148, 163, 184, 0.6);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+}
+
+.contact-field-full {
+  grid-column: 1 / -1;
+}
+
+/* Label row with icon + status badge */
+.contact-field-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.contact-field-label-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.contact-field-label-main label {
+  cursor: pointer;
+}
+
+/* Icon bubble per field */
+.contact-field-icon {
+  --icon-bg: rgba(15, 23, 42, 0.92);
+  --icon-color: #c7d2fe;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--icon-bg);
+  color: var(--icon-color);
+  font-size: 12px;
+  box-shadow:
+    0 0 0 1px rgba(148, 163, 184, 0.5),
+    0 8px 18px rgba(15, 23, 42, 0.8);
+}
+
+/* Icon color accents by field type */
+.contact-field[data-field="name"] .contact-field-icon {
+  --icon-bg: rgba(129, 140, 248, 0.16);
+  --icon-color: #a5b4fc;
+}
+.contact-field[data-field="email"] .contact-field-icon {
+  --icon-bg: rgba(56, 189, 248, 0.18);
+  --icon-color: #7dd3fc;
+}
+.contact-field[data-field="topic"] .contact-field-icon {
+  --icon-bg: rgba(52, 211, 153, 0.18);
+  --icon-color: #6ee7b7;
+}
+.contact-field[data-field="budget"] .contact-field-icon {
+  --icon-bg: rgba(244, 114, 182, 0.18);
+  --icon-color: #f9a8d4;
+}
+.contact-field[data-field="message"] .contact-field-icon {
+  --icon-bg: rgba(251, 191, 36, 0.18);
+  --icon-color: #fde68a;
+}
+
+/* Required / optional badges */
+.contact-field-required,
+.contact-field-optional {
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+}
+
+.contact-field-required {
+  background: color-mix(in oklab, var(--surface-1) 86%, #f97373 14%);
+  color: #fecaca;
+  border-color: rgba(239, 68, 68, 0.7);
+}
+
+.contact-field-optional {
+  background: color-mix(in oklab, var(--surface-1) 88%, #16a34a 12%);
+  color: #bbf7d0;
+  border-color: rgba(34, 197, 94, 0.7);
+}
+
+[data-theme="light"] .contact-field-required {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+[data-theme="light"] .contact-field-optional {
+  background: #ecfdf3;
+  color: #166534;
+}
+
+/* Inputs, selects, textareas inside card */
+#contactModal input,
+#contactModal select,
+#contactModal textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 0.65rem;
+  border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+  background: color-mix(in oklab, var(--surface-1) 88%, #020617 12%);
+  color: var(--text);
+  font-size: 13px;
+  resize: vertical;
+  transition:
+    border-color 0.16s ease,
+    box-shadow 0.16s ease,
+    background 0.16s ease,
+    transform 0.1s ease;
+}
+
+#contactModal textarea {
+  min-height: 110px;
+}
+
+#contactModal input::placeholder,
+#contactModal textarea::placeholder {
+  color: color-mix(in oklab, var(--muted) 90%, #ffffff 10%);
+}
+
+[data-theme="light"] #contactModal input,
+[data-theme="light"] #contactModal select,
+[data-theme="light"] #contactModal textarea {
+  background: #ffffff;
+}
+
+/* Focus + “active field” state */
+#contactModal input:focus,
+#contactModal select:focus,
+#contactModal textarea:focus {
+  outline: none;
+  border-color: color-mix(in oklab, var(--brand-ui) 80%, var(--border) 20%);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--brand-ui) 85%, transparent),
+    0 0 0 4px var(--ring);
+  background: color-mix(in oklab, var(--surface-1) 84%, #020617 16%);
+  transform: translateY(-1px);
+}
+
+.contact-field:focus-within {
+  border-color: color-mix(in oklab, var(--brand-ui) 70%, var(--border) 30%);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--brand-ui) 75%, transparent),
+    0 14px 34px rgba(15, 23, 42, 0.9);
+  background: radial-gradient(
+      circle at 0 0,
+      color-mix(in oklab, var(--brand-ui) 20%, transparent),
+      transparent 55%
+    ),
+    color-mix(in oklab, var(--surface-1) 88%, #020617 12%);
+}
+
+[data-theme="light"] .contact-field:focus-within {
+  background: radial-gradient(
+      circle at 0 0,
+      color-mix(in oklab, #bfdbfe 26%, transparent),
+      transparent 55%
+    ),
+    #ffffff;
+}
+
+/* Helper text under each field */
+.contact-helper {
+  margin: 6px 1px 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-field {
+    padding: 9px 9px 8px;
+  }
+
+  .contact-helper {
+    font-size: 10px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  #contactModal input,
+  #contactModal select,
+  #contactModal textarea,
+  .contact-field,
+  .contact-field:focus-within {
+    transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    transform: none !important;
+  }
+}
+
+/* ================================
+   Topic select – option theming
+   ================================ */
+
+/* Default option background in dark mode */
+#contactModal select option {
+  background-color: #1e293b;
+  color: #cbd5e1;
+}
+
+/* Light mode option background */
+[data-theme="light"] #contactModal select option {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+/*Dark mode option background */
+[data-theme="dark"] #contactModal select option {
+  background-color: #1e293b;
+  color: #cbd5e1;
+}
+
+/* Placeholder / empty topic option */
+#contactTopic option[value=""] {
+  color: var(--muted);
+}
+
+/* Slightly stronger text color for real choices */
+#contactTopic option:not([value=""]) {
+  color: color-mix(in oklab, var(--text) 92%, #e5e7eb 8%);
+}

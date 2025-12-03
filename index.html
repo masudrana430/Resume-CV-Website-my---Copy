@@ -51,7 +51,7 @@
 
     <!-- Sticky glass navbar -->
     <header class="fixed top-0 inset-x-0 z-40">
-      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="px-4 sm:px-6 lg:px-8">
         <nav
           class="mt-4 flex items-center justify-between gap-4 rounded-2xl border border-slate-700/60 bg-slate-900/70 px-4 py-2.5 backdrop-blur-xl shadow-lg shadow-slate-950/60"
         >
@@ -192,6 +192,19 @@
               </a>
 
               <a
+                href="#certificates"
+                class="flex items-center justify-between rounded-xl px-3 py-2 hover:bg-slate-900/80 hover:text-indigo-200 transition-colors"
+              >
+                <span class="flex items-center gap-2">
+                  <i
+                    class="fa-solid fa-certificate text-[13px] text-slate-400"
+                  ></i>
+                  Certificates
+                </span>
+                <span class="text-[10px] text-slate-500">Background</span>
+              </a>
+
+              <a
                 href="#projects"
                 class="flex items-center justify-between rounded-xl px-3 py-2 hover:bg-slate-900/80 hover:text-indigo-200 transition-colors"
               >
@@ -221,19 +234,21 @@
 
           <!-- Actions -->
           <div class="flex items-center gap-2">
-            <a
-              href="mailto:masud040502@gmail.com?subject=Hello%20Masud"
-              class="hidden sm:inline-flex items-center gap-2 rounded-full border border-indigo-400/70 bg-indigo-500/80 px-3 py-1.5 text-xs font-medium text-white shadow-md shadow-indigo-500/30 transition hover:bg-indigo-400/90"
+            <button
+              id="openContactModal"
+              type="button"
+              class="hidden sm:inline-flex items-center gap-2 rounded-full border border-indigo-400/70 bg-indigo-500/80 px-3 py-1.5 text-xs font-medium text-white shadow-md shadow-indigo-500/30 transition hover:bg-indigo-400/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
             >
               <i class="fa-regular fa-paper-plane text-[11px]"></i>
               <span>Let’s talk</span>
-            </a>
+            </button>
+
             <a
-              href="https://docs.google.com/document/d/1m1MGJZYdt0f0yXs1XRNOE5W7neB8IT4--OXhdUTCkZo/edit?usp=sharing"
+              href="https://drive.google.com/file/d/14tKaEYsHEtWwnxnKsk5Vt5apoEMOKC3l/view?usp=sharing"
               class="inline-flex items-center gap-2 rounded-full border border-slate-600/80 bg-slate-900/60 px-3 py-1.5 text-xs font-medium text-slate-100 shadow-sm hover:border-indigo-400/70 hover:text-indigo-200 transition"
             >
               <i class="fa-solid fa-file-arrow-down text-[11px]"></i>
-              <span>Download CV</span>
+              <span>Resume pdf</span>
             </a>
           </div>
         </nav>
@@ -1353,7 +1368,11 @@
               </div>
 
               <!-- Certificates -->
-              <div href="#certificates" class="panel reveal scroll-mt-32" id="certificates">
+              <div
+                href="#certificates"
+                class="panel reveal scroll-mt-32"
+                id="certificates"
+              >
                 <div class="flex items-center justify-between gap-3 mb-2">
                   <h3 class="flex items-center gap-2">
                     <i class="fa-solid fa-certificate" aria-hidden="true"></i>
@@ -1611,9 +1630,10 @@
                         id="certObj"
                         class="pdf-embed"
                         data=""
-                        type="application/pdf" aria-label="Embedded certificate
-                        PDF" >
-                      </object>
+                        type="application/pdf"
+                        aria-label="Embedded certificate
+                        PDF"
+                      ></object>
                       <img
                         id="certImg"
                         class="cert-img"
@@ -1821,6 +1841,120 @@
             <button type="submit" class="btn btn--primary" id="refSave">
               <i class="fa-regular fa-floppy-disk"></i> Save
             </button>
+          </div>
+        </form>
+      </div>
+    </dialog>
+
+    <!-- Contact / Let's talk modal -->
+    <dialog
+      id="contactModal"
+      style="
+        border: none;
+        border-radius: 16px;
+        padding: 0;
+        max-width: 640px;
+        width: 100%;
+      "
+    >
+      <div class="modal-head contact-modal-head">
+        <div class="flex items-center gap-3">
+          <div
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full"
+            style="
+              background: radial-gradient(circle at 30% 0%, #a5b4fc, #4f46e5);
+              box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.5);
+            "
+          >
+            <i class="fa-regular fa-paper-plane"></i>
+          </div>
+          <div class="leading-tight">
+            <strong>Let’s talk</strong>
+            <div class="text-xs text-slate-400">
+              Share a few details and I’ll get back to you.
+            </div>
+          </div>
+        </div>
+        <button class="btn" id="contactClose">
+          <i class="fa-solid fa-xmark"></i> Close
+        </button>
+      </div>
+
+      <div class="modal-body contact-modal-body">
+        <form id="contactForm" class="contact-form-grid">
+          <div class="contact-field">
+            <label for="contactName">Your name</label>
+            <input
+              id="contactName"
+              name="name"
+              type="text"
+              placeholder="Full name"
+              required
+            />
+          </div>
+
+          <div class="contact-field">
+            <label for="contactEmail">Email</label>
+            <input
+              id="contactEmail"
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+              required
+            />
+          </div>
+
+          <div class="contact-field">
+            <label for="contactTopic">Topic</label>
+            <select id="contactTopic" name="topic">
+              <option value="">Select a topic (optional)</option>
+              <option value="frontend">Frontend / UI work</option>
+              <option value="mern">MERN stack project</option>
+              <option value="data-ops">Data operations / admin</option>
+              <option value="consult">Consultation / mentoring</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="contact-field">
+            <label for="contactBudget">Budget (optional)</label>
+            <select id="contactBudget" name="budget">
+              <option value="">Not decided / just chatting</option>
+              <option value="$100-300">$100–300</option>
+              <option value="$300-800">$300–800</option>
+              <option value="$800-1500">$800–1500</option>
+              <option value="$1500+">$1500+</option>
+            </select>
+          </div>
+
+          <div class="contact-field contact-field-full">
+            <label for="contactMessage">Message</label>
+            <textarea
+              id="contactMessage"
+              name="message"
+              rows="4"
+              placeholder="Tell me about your project, timeline, or what you need help with..."
+              required
+            ></textarea>
+          </div>
+
+          <div class="contact-footer">
+            <div class="contact-meta">
+              <span class="badge-live">
+                <span class="dot"></span>
+                Typically replies within 24 hours
+              </span>
+              
+            </div>
+            <div class="contact-actions">
+              <button type="button" class="btn btn--ghost" id="contactCancel">
+                Cancel
+              </button>
+              <button type="submit" class="btn btn--primary">
+                <i class="fa-regular fa-paper-plane"></i>
+                Send message
+              </button>
+            </div>
           </div>
         </form>
       </div>

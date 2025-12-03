@@ -633,3 +633,103 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 })();
+
+
+// =============================
+// "Let's talk" contact modal
+// =============================
+document.addEventListener("DOMContentLoaded", () => {
+  const contactModal = document.getElementById("contactModal");
+  const openContact = document.getElementById("openContactModal");
+  const contactClose = document.getElementById("contactClose");
+  const contactCancel = document.getElementById("contactCancel");
+  const contactForm = document.getElementById("contactForm");
+  let contactBackdrop = null;
+
+  if (!contactModal || !openContact) return;
+
+  const openModal = () => {
+    if (contactModal.open) return;
+    contactModal.showModal();
+
+    contactBackdrop = document.createElement("div");
+    contactBackdrop.className = "modal-backdrop";
+    document.body.appendChild(contactBackdrop);
+  };
+
+  const closeModal = () => {
+    if (contactModal.open) contactModal.close();
+    if (contactBackdrop) {
+      contactBackdrop.remove();
+      contactBackdrop = null;
+    }
+  };
+
+  openContact.addEventListener("click", (e) => {
+    e.preventDefault();
+    openModal();
+  });
+
+  if (contactClose) {
+    contactClose.addEventListener("click", closeModal);
+  }
+  if (contactCancel) {
+    contactCancel.addEventListener("click", closeModal);
+  }
+
+  // Close on Esc using dialog "cancel" event
+  contactModal.addEventListener("cancel", (e) => {
+    e.preventDefault();
+    closeModal();
+  });
+
+  // Click outside dialog to close
+  contactModal.addEventListener("click", (e) => {
+    const rect = contactModal.getBoundingClientRect();
+    const clickInDialog =
+      e.clientX >= rect.left &&
+      e.clientX <= rect.right &&
+      e.clientY >= rect.top &&
+      e.clientY <= rect.bottom;
+
+    if (!clickInDialog) {
+      closeModal();
+    }
+  });
+
+  // Build mailto body from form and open email client
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = (document.getElementById("contactName")?.value || "").trim();
+      const email =
+        (document.getElementById("contactEmail")?.value || "").trim();
+      const topic =
+        (document.getElementById("contactTopic")?.value || "").trim();
+      const budget =
+        (document.getElementById("contactBudget")?.value || "").trim();
+      const message =
+        (document.getElementById("contactMessage")?.value || "").trim();
+
+      const lines = [
+        `Name: ${name || "N/A"}`,
+        `Email: ${email || "N/A"}`,
+        topic && `Topic: ${topic}`,
+        budget && `Budget: ${budget}`,
+        "",
+        "Message:",
+        message || "(no message provided)"
+      ].filter(Boolean);
+
+      const subject = encodeURIComponent(
+        `New message from ${name || "portfolio visitor"}`
+      );
+      const body = encodeURIComponent(lines.join("\n"));
+
+      window.location.href = `mailto:masud040502@gmail.com?subject=${subject}&body=${body}`;
+
+      closeModal();
+    });
+  }
+});
