@@ -456,6 +456,16 @@
                           <span>DOM, fetch, modular code</span>
                         </div>
                       </div>
+
+                      <div class="skill-card">
+                        <span class="skill-icon python">
+                          <i class="fa-brands fa-python"></i>
+                        </span>
+                        <div class="skill-text">
+                          <strong>Python</strong>
+                          <span>Data analysis, scripting, automation</span>
+                        </div>
+                      </div>
                     </div>
                   </section>
 
@@ -488,8 +498,21 @@
                           <i class="fa-solid fa-route"></i>
                         </span>
                         <div class="skill-text">
-                          <strong>React Router</strong>
-                          <span>SPA routing & protected routes</span>
+                          <strong>React Router DOM</strong>
+                          <span
+                            >SPA routing, nested routes & protected paths</span
+                          >
+                        </div>
+                      </div>
+
+                      <div class="skill-card">
+                        <span class="skill-icon nextjs">
+                          <!-- Font Awesome has no Next.js icon, so use React as the brand -->
+                          <i class="fa-brands fa-react"></i>
+                        </span>
+                        <div class="skill-text">
+                          <strong>Next.js</strong>
+                          <span>App Router, SSR, API routes</span>
                         </div>
                       </div>
                     </div>
@@ -526,6 +549,17 @@
                         <div class="skill-text">
                           <strong>MongoDB</strong>
                           <span>Document modeling & queries</span>
+                        </div>
+                      </div>
+
+                      <div class="skill-card">
+                        <span class="skill-icon firebase">
+                          <!-- No fa-firebase in Font Awesome; use fire as a visual hint -->
+                          <i class="fa-solid fa-fire"></i>
+                        </span>
+                        <div class="skill-text">
+                          <strong>Firebase Auth</strong>
+                          <span>Email/Google login & user management</span>
                         </div>
                       </div>
                     </div>
@@ -783,7 +817,8 @@
                         >
                           <div>
                             <h4 class="text-base font-semibold">
-                              Bachelor of Science (Honours) — Physics
+                              Bachelor of Science (Honours) — Engineering
+                              Physics
                             </h4>
                             <p class="text-xs text-indigo-300 mt-0.5">
                               National University, Bangladesh
@@ -1364,6 +1399,125 @@
                       </div>
                     </div>
                   </article>
+
+                  <!-- 🛒 NextShop -->
+                  <article
+                    class="rounded-xl border border-slate-700/70 bg-slate-900/80 p-4 shadow-sm transition hover:-translate-y-1 hover:border-pink-400/80 hover:shadow-lg hover:shadow-pink-500/30"
+                  >
+                    <header class="flex items-start justify-between gap-3 mb-3">
+                      <div>
+                        <div
+                          class="flex items-center gap-2 text-sm font-semibold text-slate-500"
+                        >
+                          <span class="text-lg">🛒</span>
+                          <span>NextShop</span>
+                        </div>
+                        <p class="text-xs text-pink-300 mt-1">
+                          Next.js Product Management &amp; Dashboard
+                        </p>
+                      </div>
+                      <span
+                        class="inline-flex items-center gap-1 rounded-full bg-pink-500/10 px-2 py-0.5 text-[11px] font-medium text-pink-300"
+                      >
+                        <i class="fa-solid fa-heart text-[10px]"></i>
+                        Full-stack Next.js
+                      </span>
+                    </header>
+
+                    <p class="text-xs text-slate-400 mb-2">
+                      A responsive Next.js app where users can browse products,
+                      view details, and authenticated users can manage products
+                      from a protected dashboard.
+                    </p>
+
+                    <ul class="mt-2 space-y-1.5 text-[11px] text-slate-400">
+                      <li>
+                        <span class="text-pink-300 font-semibold"
+                          >Product catalog:</span
+                        >
+                        searchable product grid with dynamic detail pages
+                        powered by App Router.
+                      </li>
+                      <li>
+                        <span class="text-pink-300 font-semibold"
+                          >Auth &amp; protection:</span
+                        >
+                        Firebase email/Google login, protected routes for
+                        add/manage products.
+                      </li>
+                      <li>
+                        <span class="text-pink-300 font-semibold"
+                          >API-driven:</span
+                        >
+                        Node.js/Express REST API on Vercel for listing,
+                        creating, and deleting products.
+                      </li>
+                      <li>
+                        <span class="text-pink-300 font-semibold"
+                          >Polished UI:</span
+                        >
+                        Tailwind-based responsive layout, hover states, and
+                        dashboard-style forms.
+                      </li>
+                    </ul>
+
+                    <!-- Tech stack -->
+                    <div
+                      class="mt-3 flex flex-wrap gap-1.5 text-[11px] text-pink-400"
+                    >
+                      <span class="rounded-full bg-pink-500/20 px-2 py-0.5"
+                        >Next.js</span
+                      >
+                      <span class="rounded-full bg-pink-500/20 px-2 py-0.5"
+                        >App Router</span
+                      >
+                      <span class="rounded-full bg-pink-500/20 px-2 py-0.5"
+                        >React</span
+                      >
+                      <span class="rounded-full bg-pink-500/20 px-2 py-0.5"
+                        >Tailwind CSS</span
+                      >
+                      <span class="rounded-full bg-pink-500/20 px-2 py-0.5"
+                        >Firebase Auth</span
+                      >
+                      <span class="rounded-full bg-pink-500/20 px-2 py-0.5"
+                        >Node.js</span
+                      >
+                      <span class="rounded-full bg-pink-500/20 px-2 py-0.5"
+                        >Express.js</span
+                      >
+                      <span class="rounded-full bg-pink-500/20 px-2 py-0.5"
+                        >Netlify</span
+                      >
+                      <span class="rounded-full bg-pink-500/20 px-2 py-0.5"
+                        >Vercel</span
+                      >
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <a
+                        href="https://ejp-next-js-project.netlify.app/"
+                        target="_blank"
+                        rel="noopener"
+                        class="inline-flex items-center gap-2 rounded-full border border-pink-400/70 bg-pink-500/20 px-3 py-1.5 text-[11px] font-semibold text-pink-400 hover:bg-pink-500/30 hover:border-pink-300/90 transition"
+                      >
+                        <i
+                          class="fa-solid fa-up-right-from-square text-[10px]"
+                        ></i>
+                        Live site
+                      </a>
+                      <a
+                        href="https://github.com/masudrana430/ejp-next-firebase-shop"
+                        target="_blank"
+                        rel="noopener"
+                        class="inline-flex items-center gap-2 rounded-full border border-slate-600/80 bg-slate-900/70 px-3 py-1.5 text-[11px] font-semibold text-slate-100 hover:border-pink-400/80 hover:text-pink-200 transition"
+                      >
+                        <i class="fa-brands fa-github text-[12px]"></i>
+                        Client code
+                      </a>
+                    </div>
+                  </article>
                 </div>
               </div>
 
@@ -1942,9 +2096,12 @@
             <div class="contact-meta">
               <span class="badge-live">
                 <span class="dot"></span>
-                Typically replies within 24 hours
+                <span
+                  class="inline-flex items-center gap-2 rounded-full px-3 py-1 text-emerald-300"
+                >
+                  Typically replies within 24 hours
+                </span>
               </span>
-              
             </div>
             <div class="contact-actions">
               <button type="button" class="btn btn--ghost" id="contactCancel">
