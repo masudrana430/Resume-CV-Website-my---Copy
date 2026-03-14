@@ -954,18 +954,22 @@ header nav {
 
 /* Per-project accent overrides */
 #projects article:nth-of-type(1) {
+  --card-accent: #8b5cf6; /* premium glass violet */
+}
+
+#projects article:nth-of-type(2) {
   --card-accent: #ec4899; /* ProCleaning – emerald */
 }
-#projects article:nth-of-type(2) {
+#projects article:nth-of-type(3) {
   --card-accent: #22c55e; /* WarmPaws – pink */
 }
-#projects article:nth-of-type(3) {
+#projects article:nth-of-type(4) {
   --card-accent: #0ea5e9; /* HERO.IO – sky */
 }
-#projects article:nth-of-type(4) {
+#projects article:nth-of-type(5) {
   --card-accent: #f97316; /* TaskMaster – amber */
 }
-#projects article:nth-of-type(5) {
+#projects article:nth-of-type(6) {
   --card-accent: #a855f7; /* DevConnect – violet */
 }
 
